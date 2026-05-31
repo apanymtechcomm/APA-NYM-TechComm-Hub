@@ -1,0 +1,150 @@
+/* === APA NYM TechComm — Newsletters Page === */
+
+.newsletter-container {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  border-bottom: var(--border-style) var(--blue);
+}
+
+.newsletter-sidebar {
+  width: 240px;
+  min-width: 240px;
+  border-right: var(--border-style) var(--blue);
+  padding: 0;
+}
+
+.newsletter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.newsletter-list li {
+  margin: 0;
+  border-bottom: var(--border-style) var(--blue);
+}
+
+.newsletter-list li:last-child {
+  border-bottom: none;
+}
+
+.newsletter-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 20px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text);
+  border: none;
+  transition: background var(--transition), color var(--transition);
+}
+
+.newsletter-list li.active .newsletter-link,
+.newsletter-link:focus,
+.newsletter-link:hover {
+  background: var(--blue);
+  color: var(--white);
+  outline: none;
+}
+
+.newsletter-content {
+  flex: 1 1 auto;
+  min-height: 600px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+#newsletterFrame {
+  width: 100%;
+  min-height: 600px;
+  height: 75vh;
+  border: none;
+  flex: 1 1 auto;
+  background: var(--white);
+}
+
+.newsletter-actions {
+  padding: 12px 20px;
+  border-top: var(--border-style) var(--blue);
+}
+
+.newsletter-actions a {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--blue);
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+
+.newsletter-actions a:hover,
+.newsletter-actions a:focus {
+  color: var(--blue-mid);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* === Responsive === */
+
+@media (max-width: 768px) {
+  .newsletter-container {
+    flex-direction: column;
+  }
+
+  .newsletter-sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: var(--border-style) var(--blue);
+  }
+
+  .newsletter-list li {
+    display: inline-block;
+    border-bottom: none;
+    border-right: var(--border-style) var(--blue);
+  }
+
+  .newsletter-list li:last-child {
+    border-right: none;
+  }
+
+  .newsletter-link {
+    padding: 10px 14px;
+  }
+
+  #newsletterFrame {
+    min-height: 400px;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-link {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  #newsletterFrame {
+    min-height: 300px;
+    height: 60vh;
+  }
+}

@@ -1,0 +1,336 @@
+/* === APA NYM TechComm — Members Page Styles === */
+
+/* Page title styles are in style.css (.page-title-section, .page-title, .page-subtitle) */
+
+/* ===== Roster Groups ===== */
+
+.yearbook-section {
+  padding: 0 24px 48px;
+}
+
+.roster-group {
+  margin-bottom: 36px;
+}
+
+.roster-group:last-child {
+  margin-bottom: 0;
+}
+
+.roster-heading {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  padding-left: 4px;
+  border-bottom: var(--border-style) var(--blue);
+  display: inline-block;
+}
+
+/* ===== Yearbook Grid ===== */
+
+.yearbook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+/* ===== Member Card ===== */
+
+.member-card {
+  border-right: var(--border-style) var(--blue);
+  border-bottom: var(--border-style) var(--blue);
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: background var(--transition);
+  position: relative;
+}
+
+.member-card:hover,
+.member-card:focus {
+  background: var(--off-white);
+}
+
+.member-card:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+/* Remove right border on last column */
+.yearbook-grid .member-card:nth-child(4n) {
+  border-right: none;
+}
+
+/* ===== Member Photo (Initials Avatar) ===== */
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  background: hsl(var(--hue, 210), 80%, 25%);
+  border: 2px dashed hsl(var(--hue, 210), 60%, 45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.member-card:hover .member-photo {
+  transform: scale(1.04);
+  border-color: hsl(var(--hue, 210), 70%, 55%);
+}
+
+.member-initials {
+  font-family: var(--font);
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+/* ===== Member Info ===== */
+
+.member-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.member-role {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.member-blurb {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+  text-align: center;
+}
+
+/* ===== Modal ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 22, 40, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay[hidden] {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--white);
+  border: var(--border-style) var(--blue);
+  padding: 40px;
+  max-width: 520px;
+  width: 100%;
+  position: relative;
+  animation: modalSlideIn 0.25s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color var(--transition);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--text);
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.modal-photo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  background: hsl(var(--hue, 210), 80%, 25%);
+  border: 2px dashed hsl(var(--hue, 210), 60%, 45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-photo .member-initials {
+  font-size: 40px;
+}
+
+.modal-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.modal-role {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.modal-divider {
+  border: none;
+  border-top: var(--border-style) var(--blue);
+  margin: 0 0 16px;
+}
+
+.modal-bio {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+  .page-title-section {
+    padding: 20px 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .yearbook-section {
+    padding: 0 16px 28px;
+  }
+
+  .yearbook-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .yearbook-grid .member-card:nth-child(4n) {
+    border-right: var(--border-style) var(--blue);
+  }
+
+  .yearbook-grid .member-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .member-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .member-initials {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title-section {
+    padding: 16px 16px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+  }
+
+  .yearbook-section {
+    padding: 0 16px 28px;
+  }
+
+  .yearbook-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .yearbook-grid .member-card {
+    border-right: none;
+  }
+
+  .yearbook-grid .member-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .member-card {
+    padding: 20px 16px;
+  }
+
+  .member-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .member-initials {
+    font-size: 24px;
+  }
+
+  .modal-card {
+    padding: 28px 20px;
+  }
+
+  .modal-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .modal-photo .member-initials {
+    font-size: 28px;
+  }
+
+  .modal-name {
+    font-size: 18px;
+  }
+}

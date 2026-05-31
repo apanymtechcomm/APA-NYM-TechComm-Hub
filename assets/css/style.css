@@ -1,0 +1,737 @@
+/* === APA NYM TechComm — Style Sheet === */
+
+:root {
+  --blue: #0047AB;
+  --blue-dark: #001a4d;
+  --blue-deeper: #0a1628;
+  --blue-light: #e8eef6;
+  --blue-mid: #0b5394;
+  --white: #ffffff;
+  --off-white: #f5f7fb;
+  --text: #1a1a2e;
+  --text-muted: #4a4a6a;
+  --border: var(--blue);
+  --border-style: 2px dashed;
+  --font: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  --transition: 0.3s ease;
+}
+
+/* === Reset & Base === */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover,
+a:focus {
+  color: var(--blue-mid);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* === Header === */
+
+.site-header {
+  border-bottom: var(--border-style) var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.site-branding {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--blue);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-subtitle {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.site-nav {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+.site-nav a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  border-bottom-color: var(--blue);
+}
+
+/* === Hero Carousel === */
+
+.hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: var(--border-style) var(--border);
+}
+
+.hero-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.hero-slide {
+  min-width: 100%;
+  position: relative;
+  aspect-ratio: 21 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Hero image background */
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, #0047AB 0%, #001a4d 60%, #0a1628 100%);
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.7;
+  mix-blend-mode: luminosity;
+}
+
+/* Subtle grid overlay */
+.hero-slide-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* SVG city silhouette (inline via CSS) */
+.hero-slide-bg-city {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.12;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 5;
+  margin: 24px;
+  max-width: 340px;
+  background: rgba(255, 255, 255, 0.95);
+  border: var(--border-style) var(--blue);
+  padding: 16px 20px;
+}
+
+.hero-overlay h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.hero-overlay p {
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.hero-cta {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--blue);
+  padding: 6px 14px;
+  border: 1px solid var(--blue);
+  transition: background var(--transition), color var(--transition);
+}
+
+.hero-cta:hover,
+.hero-cta:focus {
+  background: var(--white);
+  color: var(--blue);
+}
+
+/* Carousel Controls */
+
+.hero-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+
+.hero-btn:hover,
+.hero-btn:focus {
+  background: var(--blue);
+  color: var(--white);
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.hero-btn-prev {
+  left: 16px;
+}
+
+.hero-btn-next {
+  right: 16px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--blue);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition);
+}
+
+.hero-dot.active,
+.hero-dot:hover {
+  background: var(--blue);
+}
+
+.hero-dot:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* === Four-Column Cards === */
+
+.cards-section {
+  padding: 20px 24px;
+  border-bottom: var(--border-style) var(--border);
+}
+
+.cards-section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-style) var(--blue);
+  display: inline-block;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.card {
+  border-right: var(--border-style) var(--blue);
+  padding: 16px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:last-child {
+  border-right: none;
+}
+
+.card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.card p,
+.card .card-details {
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.card-details span {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.card-cta {
+  margin-top: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color var(--transition);
+}
+
+.card-cta:hover,
+.card-cta:focus {
+  color: var(--blue-mid);
+}
+
+/* === Black Mirror Section === */
+
+.black-mirror-section {
+  padding: 24px 24px;
+  border-bottom: var(--border-style) var(--border);
+}
+
+.black-mirror-card {
+  border: var(--border-style) var(--blue);
+  padding: 20px 28px;
+  background: var(--off-white);
+}
+
+.black-mirror-card h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.black-mirror-card p {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.black-mirror-card .event-sub {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  padding-top: 8px;
+  border-top: var(--border-style) var(--blue);
+}
+
+/* === Page Title Section (subpages) === */
+
+.page-title-section {
+  padding: 28px 24px;
+  border-bottom: var(--border-style) var(--border);
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* === Page Content (subpages) === */
+
+.page-content {
+  padding: 0;
+}
+
+.content-block {
+  max-width: none;
+  padding: 28px 24px;
+}
+
+.content-block h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+  margin-top: 28px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-style) var(--blue);
+  display: inline-block;
+}
+
+.content-block h2:first-child {
+  margin-top: 0;
+}
+
+.content-block p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.content-block ul {
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.content-block li {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.content-block strong {
+  color: var(--blue);
+}
+
+/* === Event Cards === */
+
+.event-card {
+  border: var(--border-style) var(--blue);
+  padding: 24px 24px;
+  margin-bottom: 20px;
+  background: var(--off-white);
+}
+
+.event-card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.event-meta {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.event-meta span {
+  display: block;
+}
+
+.event-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* === Contact Section === */
+
+.contact-section {
+  margin-bottom: 32px;
+  padding: 24px 24px;
+  border-bottom: var(--border-style) var(--blue);
+}
+
+.contact-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contact-section h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.contact-section p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.contact-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-section li {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+
+/* === Footer === */
+
+.site-footer {
+  padding: 12px 24px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: var(--border-style) var(--border);
+}
+
+/* === Responsive === */
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 12px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-title {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .site-subtitle {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card:nth-child(2) {
+    border-right: none;
+  }
+
+  .card:nth-child(1),
+  .card:nth-child(2) {
+    border-bottom: var(--border-style) var(--blue);
+  }
+
+  .hero-overlay {
+    margin: 20px;
+    max-width: 340px;
+    padding: 20px;
+  }
+
+  .hero-overlay h2 {
+    font-size: 18px;
+  }
+
+  .hero-slide {
+    aspect-ratio: 16 / 9;
+  }
+
+  .black-mirror-card {
+    padding: 20px;
+  }
+
+  .page-title-section {
+    padding: 20px 20px;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .content-block {
+    padding: 0 20px;
+  }
+
+  .event-card {
+    margin: 0 20px 20px 20px;
+  }
+
+  .contact-section {
+    padding: 20px;
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding: 10px 16px;
+  }
+
+  .site-title {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .site-subtitle {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  .site-nav {
+    gap: 10px;
+  }
+
+  .site-nav a {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .page-title-section {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .content-block {
+    padding: 0 16px;
+  }
+
+  .event-card {
+    margin: 0 16px 16px 16px;
+  }
+
+  .contact-section {
+    padding: 16px;
+    margin: 0 16px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    border-right: none;
+    border-bottom: var(--border-style) var(--blue);
+  }
+
+  .card:last-child {
+    border-bottom: none;
+  }
+
+  .hero-slide {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hero-overlay {
+    margin: 12px;
+    max-width: 280px;
+    padding: 14px;
+  }
+
+  .hero-overlay h2 {
+    font-size: 14px;
+  }
+
+  .hero-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .cards-section {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .black-mirror-section {
+    padding: 16px;
+  }
+
+  .black-mirror-card {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletters — APA NYM TechComm</title>
+  <meta name="description" content="BYTE BY BYTE — the quarterly newsletter of APA NYM TechComm.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/newsletters.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-branding">
+      <div class="site-title"><a href="index.html">APA NYM TechComm</a></div>
+      <div class="site-subtitle">American Planning Association New York Metro Chapter Technology Committee</div>
+    </div>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav">
+        <li><a href="about.html">About</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="newsletters.html" style="border-bottom-color:var(--blue);">Newsletters</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-title-section">
+    <h1 class="page-title">Newsletters</h1>
+    <p class="page-subtitle">BYTE BY BYTE — the quarterly publication of APA NYM TechComm.</p>
+  </section>
+
+  <main class="page-content">
+    <section class="newsletter-container" aria-label="Newsletter archive">
+      <aside class="newsletter-sidebar" aria-label="Newsletter list">
+        <h2 class="visually-hidden">Newsletter volumes</h2>
+        <ul id="newsletterList" class="newsletter-list" role="list"></ul>
+      </aside>
+
+      <section class="newsletter-content" id="newsletterContent" tabindex="0" aria-live="polite">
+        <iframe id="newsletterFrame" title="Newsletter preview"></iframe>
+        <div class="newsletter-actions">
+          <a id="openInNewTab" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+      </section>
+    </section>
+
+    <script>
+      (function () {
+        // Add new newsletter entries here (latest first)
+        var newsletters = [
+          {
+            id: 'spring-2026',
+            title: 'BYTE BY BYTE — Spring 2026',
+            file: 'templates/byte-by-byte-spring-2026.html'
+          }
+        ];
+
+        var listEl = document.getElementById('newsletterList');
+        var iframe = document.getElementById('newsletterFrame');
+        var openInNewTab = document.getElementById('openInNewTab');
+
+        function setActive(index) {
+          var item = newsletters[index];
+          Array.from(listEl.children).forEach(function (li, i) {
+            li.classList.toggle('active', i === index);
+            var btn = li.querySelector('button');
+            if (btn) btn.setAttribute('aria-pressed', i === index ? 'true' : 'false');
+          });
+          iframe.src = item.file;
+          openInNewTab.href = item.file;
+        }
+
+        newsletters.forEach(function (n, i) {
+          var li = document.createElement('li');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'newsletter-link';
+          btn.textContent = n.title;
+          btn.setAttribute('aria-pressed', 'false');
+          btn.addEventListener('click', function () { setActive(i); });
+          li.appendChild(btn);
+          listEl.appendChild(li);
+        });
+
+        if (newsletters.length) setActive(0);
+      })();
+    </script>
+
+    <style>
+      .visually-hidden {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap;
+      }
+    </style>
+  </main>
+
+  <footer class="site-footer">
+    APA New York Metro Chapter | Technology Committee
+  </footer>
+
+</body>
+</html>
