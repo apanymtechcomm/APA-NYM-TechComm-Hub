@@ -314,18 +314,14 @@ img {
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 16px;
 }
 
 .card {
-  border-right: var(--border-style) var(--blue);
+  border: var(--border-style) var(--blue);
   padding: 16px 16px;
   display: flex;
   flex-direction: column;
-}
-
-.card:last-child {
-  border-right: none;
 }
 
 .card h3 {
@@ -594,15 +590,7 @@ img {
 
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card:nth-child(2) {
-    border-right: none;
-  }
-
-  .card:nth-child(1),
-  .card:nth-child(2) {
-    border-bottom: var(--border-style) var(--blue);
+    gap: 12px;
   }
 
   .hero-overlay {
@@ -697,15 +685,11 @@ img {
 
   .cards-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .card {
     border-right: none;
-    border-bottom: var(--border-style) var(--blue);
-  }
-
-  .card:last-child {
-    border-bottom: none;
   }
 
   .hero-slide {
