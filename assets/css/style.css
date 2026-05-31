@@ -13,7 +13,7 @@
   --border: var(--blue);
   --border-style: 1px solid;
   --border-radius: 6px;
-  --divider: 1px dashed var(--blue);
+  --divider: 2px dashed var(--blue);
   --font: 'IBM Plex Mono', 'Courier New', Courier, monospace;
   --transition: 0.3s ease;
 }
