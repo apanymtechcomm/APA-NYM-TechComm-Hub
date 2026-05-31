@@ -1,0 +1,320 @@
+/* === Timeline Events Layout === */
+
+.timeline-section {
+  padding: 28px 24px;
+}
+
+.timeline-header {
+  margin-bottom: 32px;
+}
+
+.countdown-banner {
+  border: var(--border-style) var(--blue);
+  background: var(--blue);
+  color: var(--white);
+  padding: 14px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.countdown-banner .countdown-number {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.countdown-banner .countdown-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 48px;
+}
+
+/* Dashed center line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: var(--border-style) var(--blue);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Dot on the timeline */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -38px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background: var(--white);
+  border: 2px dashed var(--blue);
+}
+
+.timeline-item.upcoming::before {
+  background: var(--blue);
+  border-style: solid;
+}
+
+.timeline-item.past::before {
+  background: var(--text-muted);
+  border-color: var(--text-muted);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+/* Event card on the timeline */
+.timeline-card {
+  border: var(--border-style) var(--blue);
+  padding: 20px 24px;
+  background: var(--white);
+}
+
+.timeline-item.past .timeline-card {
+  opacity: 0.6;
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: var(--border-style) var(--blue);
+}
+
+.timeline-card h2 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Status badges */
+.status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.status-badge.upcoming {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.status-badge.registration-open {
+  color: #1a7a3a;
+  border-color: #1a7a3a;
+  background: rgba(26, 122, 58, 0.06);
+  border-style: solid;
+}
+
+.status-badge.past {
+  color: var(--text-muted);
+  border-color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Event meta */
+.timeline-meta {
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.timeline-meta span {
+  display: block;
+  margin-bottom: 1px;
+}
+
+.timeline-meta-icon {
+  font-style: normal;
+  margin-right: 4px;
+}
+
+/* Event description */
+.timeline-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+/* RSVP / CTA */
+.timeline-cta {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+  padding-bottom: 2px;
+  transition: color var(--transition);
+}
+
+.timeline-cta:hover,
+.timeline-cta:focus {
+  color: var(--blue-mid);
+}
+
+/* Past Events Section */
+.past-events-section {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: var(--border-style) var(--blue);
+}
+
+.past-events-header {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.past-events-header::after {
+  content: '+';
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.past-events-header.open::after {
+  content: '−';
+}
+
+.past-events-list {
+  display: none;
+}
+
+.past-events-list.open {
+  display: block;
+}
+
+.past-event-row {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(74, 74, 106, 0.3);
+  display: flex;
+  gap: 16px;
+}
+
+.past-event-row:last-child {
+  border-bottom: none;
+}
+
+.past-event-title {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.past-event-date {
+  color: var(--text-muted);
+}
+
+/* === Responsive === */
+
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 36px;
+  }
+
+  .timeline::before {
+    left: 12px;
+  }
+
+  .timeline-item::before {
+    left: -30px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .timeline-card {
+    padding: 16px 20px;
+  }
+
+  .timeline-card-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .countdown-banner {
+    padding: 12px 20px;
+  }
+
+  .countdown-banner .countdown-number {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    left: 8px;
+  }
+
+  .timeline-item::before {
+    left: -24px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .timeline-card {
+    padding: 14px 16px;
+  }
+
+  .timeline-card h2 {
+    font-size: 13px;
+  }
+
+  .countdown-banner {
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .countdown-banner .countdown-number {
+    font-size: 18px;
+  }
+}
