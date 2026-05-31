@@ -487,11 +487,14 @@ img {
 }
 
 .event-card h2 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: var(--border-style) var(--blue);
 }
 
 .event-meta {
@@ -502,6 +505,12 @@ img {
 
 .event-meta span {
   display: block;
+  margin-bottom: 2px;
+}
+
+.event-meta-icon {
+  font-style: normal;
+  margin-right: 4px;
 }
 
 .event-card p {
