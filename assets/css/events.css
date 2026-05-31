@@ -89,6 +89,7 @@
   border: var(--border-style) var(--blue);
   padding: 20px 24px;
   background: var(--white);
+  box-shadow: 2px 2px 0 rgba(0, 71, 171, 0.08);
 }
 
 .timeline-item.past .timeline-card {
