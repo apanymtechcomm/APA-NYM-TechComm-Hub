@@ -1,11 +1,65 @@
 [
   {
     "title": "Spring Tech Table",
-    "description": "Kickoff of Tech Tables, conducting Tech Committee reflecting on the year so far, what is coming up in 2026, and open discussion on planning ahead. Wrap-up includes a one-hour happy hour to celebrate the release of the Planning with a Black Mirror card game. The American Planning Association's (APA) Technology Division created a scenario-based card game, to help planners collaboratively explore the impacts of emerging technologies and unpredictable events on communities. Please come expecting to learn and play with your fellow planners!.",
+    "description": "Kickoff of Tech Tables, conducting Tech Committee reflecting on the year so far, what is coming up in 2026, and open discussion on planning ahead. Wrap-up includes a one-hour happy hour to celebrate the release of the Planning with a Black Mirror card game. The American Planning Association's (APA) Technology Division created a scenario-based card game, to help planners collaboratively explore the impacts of emerging technologies and unpredictable events on communities. Please come expecting to learn and play with your fellow planners!",
     "date": "June 18, 2026",
-    "time": "6-8pm",
+    "time": "6:00 PM \u2013 8:00 PM EDT",
     "location": "VHB - One Penn Plaza, New York",
     "rsvp_url": "https://docs.google.com/forms/d/e/1FAIpQLSc9SgJUMGDtDFloxR3oFB4mctDCgdZFYp2yG6rfhSwGmb0UkA/viewform",
     "status": "registration-open"
+  },
+  {
+    "title": "Summer Tech Table: AI in Practice",
+    "description": "A deep dive into how AI tools are being used in real planning workflows \u2014 from automated permit review to scenario modeling. Members will share live demos and lessons learned from their own projects. Open discussion on where the technology is heading and what planners need to watch out for.",
+    "date": "August 13, 2026",
+    "time": "6:00 PM \u2013 8:00 PM EDT",
+    "location": "Hybrid \u2014 VHB Office + Zoom",
+    "rsvp_url": "",
+    "status": "upcoming"
+  },
+  {
+    "title": "Fall Tech Table: Open Data & Civic Tech",
+    "description": "Exploring NYC's open data landscape and how civic technologists are building tools that planners can use today. Featuring demos from NYC OpenData team members and community-built tools like ZAP trackers and 311 analyzers. Come ready to discuss what data you wish existed and what you'd build with it.",
+    "date": "October 15, 2026",
+    "time": "6:00 PM \u2013 8:00 PM EDT",
+    "location": "TBD",
+    "rsvp_url": "",
+    "status": "upcoming"
+  },
+  {
+    "title": "Planning with a Black Mirror: NPC26 Debrief",
+    "description": "Recap of the Planning with a Black Mirror sessions at the 2026 National Planning Conference. We'll discuss key takeaways, play through new scenarios from the expanded deck, and brainstorm session ideas for NPC27. Open to all \u2014 whether you attended NPC or not.",
+    "date": "December 4, 2026",
+    "time": "6:00 PM \u2013 7:30 PM EST",
+    "location": "Hybrid \u2014 Zoom",
+    "rsvp_url": "",
+    "status": "upcoming"
+  },
+  {
+    "title": "Winter Social & Year in Review",
+    "description": "Close out the year with the Tech Committee community. We'll review what we accomplished in 2026, preview the 2027 calendar, and swap predictions on what tech will shake up planning next year. Light refreshments provided.",
+    "date": "January 22, 2027",
+    "time": "6:30 PM \u2013 8:30 PM EST",
+    "location": "TBD \u2014 NYC",
+    "rsvp_url": "",
+    "status": "upcoming"
+  },
+  {
+    "title": "Planning with a Black Mirror Happy Hour",
+    "description": "Celebrate the release of the Planning with a Black Mirror card game with your fellow planners. Casual happy hour with food and drinks at Shake Shack Bryant Park. Come expecting to learn and play.",
+    "date": "May 28, 2026",
+    "time": "6:00 PM \u2013 7:00 PM EDT",
+    "location": "Shake Shack, Bryant Park",
+    "rsvp_url": "",
+    "status": "past"
+  },
+  {
+    "title": "Tech Committee Kickoff Meeting",
+    "description": "Initial meeting of the 2026 APA NYM Technology Committee. Introduced the co-chairs, discussed the year's priorities, and set the Tech Tables format.",
+    "date": "March 5, 2026",
+    "time": "6:00 PM \u2013 7:00 PM EST",
+    "location": "Zoom",
+    "rsvp_url": "",
+    "status": "past"
   }
 ]
