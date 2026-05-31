@@ -263,12 +263,15 @@
 }
 
 .sponsors-header {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: var(--divider);
+  display: inline-block;
 }
 
 .sponsors-message {
