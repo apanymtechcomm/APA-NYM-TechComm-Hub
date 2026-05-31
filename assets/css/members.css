@@ -46,6 +46,7 @@
   cursor: pointer;
   transition: background var(--transition);
   position: relative;
+  border-radius: var(--border-radius);
 }
 
 .member-card:hover,
@@ -75,6 +76,7 @@
   align-items: center;
   justify-content: center;
   transition: transform var(--transition), border-color var(--transition);
+  border-radius: var(--border-radius);
 }
 
 .member-card:hover .member-photo {
@@ -153,6 +155,7 @@
   width: 100%;
   position: relative;
   animation: modalSlideIn 0.25s ease;
+  border-radius: var(--border-radius);
 }
 
 @keyframes modalSlideIn {
@@ -198,6 +201,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--border-radius);
 }
 
 .modal-photo .member-initials {

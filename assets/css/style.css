@@ -11,7 +11,8 @@
   --text: #1a1a2e;
   --text-muted: #4a4a6a;
   --border: var(--blue);
-  --border-style: 2px dashed;
+  --border-style: 1px solid;
+  --border-radius: 6px;
   --font: 'IBM Plex Mono', 'Courier New', Courier, monospace;
   --transition: 0.3s ease;
 }
@@ -322,6 +323,7 @@ img {
   padding: 16px 16px;
   display: flex;
   flex-direction: column;
+  border-radius: var(--border-radius);
 }
 
 .card h3 {
@@ -374,6 +376,7 @@ img {
   border: var(--border-style) var(--blue);
   padding: 20px 28px;
   background: var(--off-white);
+  border-radius: var(--border-radius);
 }
 
 .black-mirror-card h2 {
@@ -480,6 +483,7 @@ img {
   padding: 24px 24px;
   margin-bottom: 20px;
   background: var(--off-white);
+  border-radius: var(--border-radius);
 }
 
 .event-card h2 {

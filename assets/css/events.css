@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  border-radius: var(--border-radius);
 }
 
 .countdown-banner .countdown-number {
@@ -90,6 +91,7 @@
   padding: 20px 24px;
   background: var(--white);
   box-shadow: 2px 2px 0 rgba(0, 71, 171, 0.08);
+  border-radius: var(--border-radius);
 }
 
 .timeline-item.past .timeline-card {
@@ -127,6 +129,7 @@
   white-space: nowrap;
   flex-shrink: 0;
   line-height: 1.4;
+  border-radius: var(--border-radius);
 }
 
 .status-badge.upcoming {
