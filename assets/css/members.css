@@ -25,7 +25,7 @@
   margin-bottom: 20px;
   padding-bottom: 8px;
   padding-left: 4px;
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
   display: inline-block;
 }
 
@@ -41,7 +41,7 @@
 
 .member-card {
   border-right: var(--border-style) var(--blue);
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
   padding: 28px 24px;
   cursor: pointer;
   transition: background var(--transition);
@@ -229,7 +229,7 @@
 
 .modal-divider {
   border: none;
-  border-top: var(--border-style) var(--blue);
+  border-top: var(--divider);
   margin: 0 0 16px;
 }
 

@@ -13,6 +13,7 @@
   --border: var(--blue);
   --border-style: 1px solid;
   --border-radius: 6px;
+  --divider: 1px dashed var(--blue);
   --font: 'IBM Plex Mono', 'Courier New', Courier, monospace;
   --transition: 0.3s ease;
 }
@@ -57,7 +58,7 @@ img {
 /* === Header === */
 
 .site-header {
-  border-bottom: var(--border-style) var(--border);
+  border-bottom: var(--divider);
   padding: 12px 24px;
   display: flex;
   align-items: center;
@@ -123,7 +124,7 @@ img {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-bottom: var(--border-style) var(--border);
+  border-bottom: var(--divider);
 }
 
 .hero-track {
@@ -297,7 +298,7 @@ img {
 
 .cards-section {
   padding: 20px 24px;
-  border-bottom: var(--border-style) var(--border);
+  border-bottom: var(--divider);
 }
 
 .cards-section h2 {
@@ -308,7 +309,7 @@ img {
   color: var(--blue);
   margin-bottom: 24px;
   padding-bottom: 8px;
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
   display: inline-block;
 }
 
@@ -369,7 +370,7 @@ img {
 
 .black-mirror-section {
   padding: 24px 24px;
-  border-bottom: var(--border-style) var(--border);
+  border-bottom: var(--divider);
 }
 
 .black-mirror-card {
@@ -409,7 +410,7 @@ img {
 
 .page-title-section {
   padding: 28px 24px;
-  border-bottom: var(--border-style) var(--border);
+  border-bottom: var(--divider);
 }
 
 .page-title {
@@ -447,7 +448,7 @@ img {
   margin-bottom: 12px;
   margin-top: 28px;
   padding-bottom: 8px;
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
   display: inline-block;
 }
 
@@ -494,7 +495,7 @@ img {
   color: var(--blue);
   margin-bottom: 12px;
   padding-bottom: 8px;
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
 }
 
 .event-meta {
@@ -524,7 +525,7 @@ img {
 .contact-section {
   margin-bottom: 32px;
   padding: 24px 24px;
-  border-bottom: var(--border-style) var(--blue);
+  border-bottom: var(--divider);
 }
 
 .contact-section:last-child {
@@ -566,7 +567,7 @@ img {
   letter-spacing: 1px;
   color: var(--text-muted);
   text-align: center;
-  border-top: var(--border-style) var(--border);
+  border-top: var(--divider);
 }
 
 /* === Responsive === */
