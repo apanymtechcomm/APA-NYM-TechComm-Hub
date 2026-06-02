@@ -15,11 +15,8 @@ The APA NYM Technology Committee brings together planners, technologists, and in
 
 ## Connect
 
-- **Website:** https://www.nyplanning.org/group-page/technology/
 - **Email:** apa.techcomm@gmail.com | technology@nyplanning.org
 - **LinkedIn:** https://www.linkedin.com/groups/8783398/
-- **Instagram:** https://www.instagram.com/techcommny/
-- **YouTube:** https://www.youtube.com/channel/UCozB4HOh6qOTdt4e_-jB4Fg
 
 ## Tech Tables
 
