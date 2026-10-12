@@ -20,3 +20,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Stack (Round 1)
+- Payload 3.90.2 website template + Next.js 16.3.3 + SQLite (`file:./apa-nym-techcomm-website.db`), pnpm.
+- Dev server **:3005** (`scripts/dev.sh`); admin at /admin.
+- Static export: `scripts/build-static.sh` → `dist/` (GitHub Pages shape, basePath `/APA-NYM-TechComm-Hub`, route stash w/ EXIT-trap restore).
+- Content seed: `NODE_ENV=production node_modules/.bin/tsx scripts/seed.ts` (idempotent).
+- Typegen: `scripts/regen-types.sh` (payload CLI generate:types hangs in this env).
+- revalidate hooks → `src/utilities/safeRevalidate.ts`; media srcs → `src/utilities/mediaUrl.ts`.
+- Publish to the live org repo is user-gated (DEV-274): replaces GitHub Pages content.
