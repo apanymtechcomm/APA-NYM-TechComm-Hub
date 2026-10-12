@@ -1,0 +1,35 @@
+# deps
+node_modules/
+
+# next / payload build artifacts
+.next/
+next-env.d.ts
+build/
+*.tsbuildinfo
+
+# payload sqlite database
+*.db
+*.db-shm
+*.db-wal
+
+# media uploads live in the DB; local uploads dir stays out of git
+public/media/
+
+# env & secrets
+.env
+.env.local
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# os junk
+.DS_Store
+.vercel
+# static export (GitHub Pages payload)
+dist/
+
+# test env
+test.env

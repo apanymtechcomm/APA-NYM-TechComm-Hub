@@ -1,0 +1,584 @@
+/* === APA NYM TechComm — site theme (ported from assets/css/style.css) === */
+
+/* IBM Plex Mono (loaded at runtime so static exports work without a font build step) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
+:root {
+  --nys-blue: #0047ab;
+  --nys-blue-dark: #001a4d;
+  --nys-blue-deeper: #0a1628;
+  --nys-blue-light: #e8eef6;
+  --nys-blue-mid: #0b5394;
+  --nys-white: #ffffff;
+  --nys-off-white: #f5f7fb;
+  --nys-text: #1a1a2e;
+  --nys-text-muted: #4a4a6a;
+  --nys-divider: 2px dashed var(--nys-blue);
+  --nys-font: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  --nys-transition: 0.3s ease;
+}
+
+.nys-site .site-header,
+.nys-site .hero,
+.nys-site .cards-section,
+.nys-site .site-footer,
+.nys-site .page-section,
+.nys-site .site-nav a,
+.nys-site .site-title a,
+.nys-site .card,
+.nys-site .site-footer {
+  transition: none;
+}
+
+/* === Page shell === */
+.nys-site {
+  font-family: var(--nys-font);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--nys-text);
+  background: var(--nys-white);
+}
+
+.nys-site a {
+  color: var(--nys-blue);
+  text-decoration: none;
+  transition: color var(--nys-transition);
+}
+.nys-site a:hover,
+.nys-site a:focus {
+  color: var(--nys-blue-mid);
+}
+
+/* === Header === */
+.nys-site .site-header {
+  border-bottom: var(--nys-divider);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.nys-site .site-branding {
+  display: flex;
+  flex-direction: column;
+}
+.nys-site .site-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--nys-blue);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.nys-site .site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.nys-site .site-subtitle {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--nys-text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+.nys-site .site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+}
+.nys-site .site-nav a {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-blue);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--nys-transition);
+}
+.nys-site .site-nav a:hover,
+.nys-site .site-nav a:focus {
+  border-bottom-color: var(--nys-blue);
+}
+
+/* === Hero carousel === */
+.nys-site .hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: var(--nys-divider);
+}
+.nys-site .hero-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.nys-site .hero-slide {
+  min-width: 100%;
+  position: relative;
+  aspect-ratio: 21 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.nys-site .hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, #0047ab 0%, #001a4d 60%, #0a1628 100%);
+}
+.nys-site .hero-bg-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.7;
+  mix-blend-mode: luminosity;
+}
+.nys-site .hero-slide-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.nys-site .hero-slide-bg-city {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.12;
+}
+.nys-site .hero-overlay {
+  position: relative;
+  z-index: 5;
+  margin: 24px;
+  max-width: 340px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--nys-blue);
+  padding: 16px 20px;
+}
+.nys-site .hero-overlay h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--nys-blue);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.nys-site .hero-overlay p {
+  font-size: 12px;
+  color: var(--nys-text-muted);
+  margin-bottom: 12px;
+}
+.nys-site .hero-cta {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-white);
+  background: var(--nys-blue);
+  padding: 8px 16px;
+  border: 1px solid var(--nys-blue);
+}
+.nys-site .hero-cta:hover,
+.nys-site .hero-cta:focus {
+  background: var(--nys-blue-mid);
+  color: var(--nys-white);
+}
+.nys-site .hero-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--nys-blue);
+  color: var(--nys-blue);
+  font-family: var(--nys-font);
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.nys-site .hero-btn:hover {
+  background: var(--nys-blue);
+  color: var(--nys-white);
+}
+.nys-site .hero-btn-prev {
+  left: 12px;
+}
+.nys-site .hero-btn-next {
+  right: 12px;
+}
+.nys-site .hero-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+.nys-site .hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--nys-blue);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.nys-site .hero-dot.active {
+  background: var(--nys-blue);
+}
+
+/* === Cards === */
+.nys-site .cards-section {
+  padding: 32px 24px;
+}
+.nys-site .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nys-site .card {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--nys-off-white);
+}
+.nys-site .card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-blue);
+}
+.nys-site .card p {
+  font-size: 13px;
+  color: var(--nys-text-muted);
+}
+.nys-site .card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  color: var(--nys-text);
+}
+.nys-site .card-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-blue);
+  border-bottom: 1px solid var(--nys-blue);
+  padding-bottom: 2px;
+}
+
+/* === Footer === */
+.nys-site .site-footer {
+  border-top: var(--nys-divider);
+  padding: 16px 24px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--nys-text-muted);
+  text-align: center;
+}
+
+/* === Content pages === */
+.nys-site .page-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+.nys-site .page-section h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--nys-blue);
+  margin-bottom: 8px;
+}
+.nys-site .page-section .page-intro {
+  font-size: 13px;
+  color: var(--nys-text-muted);
+  margin-bottom: 24px;
+}
+.nys-site .page-section h2 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-blue);
+  margin: 28px 0 12px;
+}
+.nys-site .page-section p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Events */
+.nys-site .event-card {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: var(--nys-white);
+}
+.nys-site .event-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--nys-blue);
+  margin-bottom: 4px;
+}
+.nys-site .event-status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.nys-site .event-status.registration-open {
+  background: var(--nys-blue);
+  color: var(--nys-white);
+}
+.nys-site .event-status.upcoming {
+  background: var(--nys-blue-light);
+  color: var(--nys-blue);
+}
+.nys-site .event-status.past {
+  background: #eee;
+  color: var(--nys-text-muted);
+}
+.nys-site .event-meta {
+  font-size: 12px;
+  color: var(--nys-text-muted);
+  margin-bottom: 8px;
+}
+.nys-site .event-desc {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.nys-site .event-rsvp {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-white);
+  background: var(--nys-blue);
+  padding: 6px 14px;
+  border: 1px solid var(--nys-blue);
+}
+.nys-site .event-rsvp:hover {
+  background: var(--nys-blue-mid);
+  color: var(--nys-white);
+}
+
+/* Sponsors */
+.nys-site .sponsors-band {
+  border-top: 1px dashed var(--nys-blue);
+  margin-top: 32px;
+  padding-top: 24px;
+  text-align: center;
+}
+.nys-site .sponsors-band h2 {
+  margin-top: 0;
+}
+.nys-site .sponsors-logos {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.nys-site .sponsor-slot {
+  min-width: 160px;
+  min-height: 80px;
+  border: 1px dashed var(--nys-blue-mid);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-text-muted);
+}
+
+/* Members */
+.nys-site .member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.nys-site .member-card {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  background: var(--nys-off-white);
+}
+.nys-site .member-avatar {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--nys-blue);
+  color: var(--nys-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.nys-site .member-card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nys-blue);
+}
+.nys-site .member-card .member-sub {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--nys-text-muted);
+  margin-bottom: 4px;
+}
+.nys-site .member-card .member-bio {
+  font-size: 12px;
+  color: var(--nys-text);
+}
+
+/* Resources */
+.nys-site .resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.nys-site .resource-card {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--nys-white);
+}
+.nys-site .resource-card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nys-blue);
+}
+.nys-site .resource-card p {
+  font-size: 12px;
+  color: var(--nys-text-muted);
+  flex: 1;
+}
+
+/* Newsletters */
+.nys-site .newsletter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nys-site .newsletter-row {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--nys-white);
+}
+.nys-site .newsletter-row h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nys-blue);
+}
+.nys-site .newsletter-row .issue-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nys-text-muted);
+}
+
+/* Newsletter article */
+.nys-site .newsletter-article {
+  max-width: 760px;
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 24px 28px;
+  background: var(--nys-white);
+}
+.nys-site .newsletter-article h1 {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.nys-site .newsletter-article h2 {
+  margin-top: 20px;
+}
+.nys-site .newsletter-article h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--nys-blue-mid);
+  margin: 18px 0 8px;
+}
+.nys-site .newsletter-article ul {
+  margin: 8px 0 12px 20px;
+  list-style: disc;
+}
+.nys-site .newsletter-article li {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.nys-site .newsletter-cover {
+  width: 100%;
+  border: 1px solid var(--nys-blue-mid);
+  border-radius: 6px;
+  margin: 12px 0 20px;
+}
+
+/* Contact */
+.nys-site .contact-block {
+  border: 1px solid var(--nys-blue);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  background: var(--nys-off-white);
+}
+.nys-site .contact-block h2 {
+  margin-top: 0;
+}
+.nys-site .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
