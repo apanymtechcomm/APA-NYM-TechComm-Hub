@@ -158,27 +158,16 @@ await upsertEvent('spring-tech-table', {
   hybrid: true,
   featured: true,
 })
-await upsertEvent('summer-tech-table', {
-  title: 'Summer Tech Table',
-  slug: 'summer-tech-table',
-  eventDate: '2026-08-20T18:00:00.000-04:00',
-  timeString: '6:00 PM – 8:00 PM EDT',
-  location: 'Hybrid — VHB Office + Zoom',
-  description:
-    'Committee speaker on technology trends impacting planning and placemaking. Open discussion on where the field is heading and what tools planners should be watching. Details to be announced.',
-  status: 'upcoming',
-  rsvpUrl: '',
-  hybrid: true,
-})
 await upsertEvent('fall-tech-table', {
   title: 'Fall Tech Table',
   slug: 'fall-tech-table',
-  eventDate: '2026-10-22T18:00:00.000-04:00',
-  timeString: '6:00 PM – 8:00 PM EDT',
+  eventDate: '2026-11-19T18:00:00.000-05:00',
+  timeString: '6:00 PM – 8:00 PM EST',
   location: 'VHB - One Penn Plaza, New York',
   description:
     'Committee speaker on technology trends impacting planning and placemaking. Open discussion on where the field is heading and what tools planners should be watching. Details to be announced.',
   status: 'upcoming',
+  featured: true,
   hybrid: false,
 })
 await upsertEvent('winter-tech-table', {
@@ -189,7 +178,7 @@ await upsertEvent('winter-tech-table', {
   location: 'VHB - One Penn Plaza, New York',
   description:
     "Holiday happy hour and year-end wrap-up. We'll review what the committee accomplished in 2026, preview the 2027 calendar, and celebrate with fellow planners. Light refreshments provided.",
-  status: 'upcoming',
+  status: 'cancelled',
   hybrid: false,
 })
 

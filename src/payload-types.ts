@@ -807,7 +807,7 @@ export interface Event {
   timeString: string;
   location: string;
   description: string;
-  status: 'registration-open' | 'upcoming' | 'past';
+  status: 'registration-open' | 'upcoming' | 'past' | 'cancelled';
   /**
    * Google Form or other RSVP link (leave empty if not open)
    */
