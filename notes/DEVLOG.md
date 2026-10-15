@@ -3,6 +3,13 @@
 Append-only log of each round of development on this repo (part of DevOS
 project **PROJ-033**). New entries go at the top.
 
+## Round 2 — 2026-10-12 · Restore Payload admin through Tailscale
+
+- Root cause: Next.js 16 dev-origin protection returned HTTP 403 for Payload admin client chunks requested through `vengeance.tail92bcba.ts.net`. The `/admin` HTML shell still returned 200, but React could not hydrate and the body remained blank.
+- Fix: added `allowedDevOrigins: ['vengeance.tail92bcba.ts.net']` to `next.config.ts`; restarted `apa-nym-techcomm-website.service`.
+- Verification: `pnpm exec tsc --noEmit` passed; `pnpm run build` exited 0 and generated all routes; browser navigation now redirects `/admin` to `/admin/login`, renders the login form, and loads 39/39 Next chunks with zero HTTP failures.
+- Follow-up: the successful production build still emits a non-fatal resolver diagnostic for `../../../tailwind.config.mjs`; the file exists at repo root and compilation completes. The rendered dev page also reports a Next/React performance-measure error about a negative `Page` timestamp, without preventing render.
+
 ## Round 1 — 2026-10-12 · Standalone Payload build, full content port, static export
 
 - Source: existing static GitHub Pages site (private repo `apanytechcomm/APA-NYM-TechComm-Hub`, cloned read-only). Pages: index (hero carousel + cards), about, members (roster), events (4 Tech Tables + sponsor band; data/events.json), newsletters (BYTE BY BYTE template issue), resources (8 entries), contact.

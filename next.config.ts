@@ -18,6 +18,7 @@ const isStatic = process.env.BUILD_MODE === 'static'
 const GITHUB_PAGES_BASE = '/APA-NYM-TechComm-Hub'
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['vengeance.tail92bcba.ts.net'],
   ...(isStatic
     ? {
         output: 'export' as const,
