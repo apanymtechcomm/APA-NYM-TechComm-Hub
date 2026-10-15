@@ -121,6 +121,7 @@ await upsertHeroSlide('Tech Tables Launch', {
   text: 'A new series of intimate, topic-driven gatherings for planners and technologists.',
   ctaLabel: 'Learn More',
   ctaUrl: '/events',
+  bgImage: await upsertMedia('hero-herald-blue.png', p('hero-herald-blue.png'), 'Herald Square, blue duotone'),
   sortOrder: 20,
 })
 await upsertHeroSlide('Planning with a Black Mirror||Happy Hour', {
@@ -128,6 +129,7 @@ await upsertHeroSlide('Planning with a Black Mirror||Happy Hour', {
   text: 'Celebrate the release of the Planning with a Black Mirror card game. Learn and play with your fellow planners.',
   ctaLabel: 'RSVP',
   ctaUrl: '/events',
+  bgImage: await upsertMedia('hero-lower-mn-blue.png', p('hero-lower-mn-blue.png'), 'Lower Manhattan skyline, blue duotone'),
   sortOrder: 30,
 })
 await upsertHeroSlide('Field Notes||NPC26 Technology Takeaways', {
@@ -135,6 +137,7 @@ await upsertHeroSlide('Field Notes||NPC26 Technology Takeaways', {
   text: 'Key insights and technology highlights from the 2026 National Planning Conference.',
   ctaLabel: 'Coming Soon',
   ctaUrl: '#',
+  bgImage: await upsertMedia('hero-LIC-blue.png', p('hero-LIC-blue.png'), 'Long Island City skyline, blue duotone'),
   sortOrder: 40,
 })
 
