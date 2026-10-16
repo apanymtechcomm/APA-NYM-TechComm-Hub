@@ -6,9 +6,9 @@ export default async function MembersPage() {
   const res = await payload.find({ collection: 'members', overrideAccess: true, sort: 'sortOrder', limit: 100 })
 
   const groups: Array<[string, string]> = [
-    ['co-chair', 'Co-Chairs'],
+    ['co-chair', 'Co-Chair'],
     ['secretary', 'Secretary'],
-    ['advisor', 'Advisors'],
+    ['advisor', 'Advisor'],
   ]
 
   const memberDocs = res.docs as any[]

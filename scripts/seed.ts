@@ -204,19 +204,6 @@ for (const [title, description, linkLabel, linkUrl] of resources) {
 payload.logger.info('seeding members...')
 const members: Array<Record<string, unknown>> = [
   { name: 'Andrew Buck, AICP, ENV SP', initials: 'AB', memberRole: 'co-chair', subtitle: 'Co-Chair', bio: 'Infrastructure planner and sustainability strategist at VHB. Leading the charge to connect NYC planners with the tools that shape cities.', sortOrder: 10 },
-  { name: 'Claire Yang', initials: 'CY', memberRole: 'co-chair', subtitle: 'Co-Chair', bio: 'Bridging data science and urban policy to make planning more transparent and community-driven.', sortOrder: 20 },
-  { name: 'Savannah Wu', initials: 'SW', memberRole: 'co-chair', subtitle: 'Co-Chair', bio: "Focused on equitable technology access in planning and building community among NYC's tech-forward practitioners.", sortOrder: 30 },
-  { name: 'Ian Hartz', initials: 'IH', memberRole: 'secretary', subtitle: 'Secretary', bio: 'Keeping the committee organized and on track, with deep experience in transportation planning at MTA.', sortOrder: 40 },
-  { name: 'Olivia Jovine', initials: 'OJ', memberRole: 'advisor', subtitle: 'Founding Co-Chair, Advisor', bio: 'A founding force behind the Tech Committee, bringing institutional knowledge and a passion for planning innovation.', sortOrder: 50 },
-  { name: 'Kelly Richardson', initials: 'KR', memberRole: 'advisor', subtitle: 'Founding Co-Chair, Advisor', bio: "NYC Housing Preservation & Development veteran, helping shape the committee's long-term direction and community connections.", sortOrder: 60 },
-  { name: 'Jack Darcey', initials: 'JD', memberRole: 'member', subtitle: 'NYC Department of City Planning', bio: 'Working at the intersection of urban data and policy, helping NYC make smarter planning decisions.', sortOrder: 100 },
-  { name: 'Megan Marini', initials: 'MM', memberRole: 'member', subtitle: '3x3', bio: 'Designing technology solutions that make complex planning processes more accessible and human-centered.', sortOrder: 110 },
-  { name: 'Alana Pogostin', initials: 'AP', memberRole: 'member', subtitle: 'Esri', bio: 'Connecting planners with geospatial tools and helping teams leverage GIS for smarter decision-making.', sortOrder: 120 },
-  { name: 'Alice Friedman', initials: 'AF', memberRole: 'member', subtitle: 'Geotab', bio: 'Bringing transportation data analytics to the planning world, turning vehicle telematics into urban insights.', sortOrder: 130 },
-  { name: 'Ashley Louie', initials: 'AL', memberRole: 'member', subtitle: 'MIT', bio: 'Researching how emerging technologies can improve urban governance and community engagement in planning.', sortOrder: 140 },
-  { name: 'Lauren Wang', initials: 'LW', memberRole: 'member', subtitle: 'Trust for Governors Island', bio: 'Advancing climate resilience and adaptive reuse strategies, connecting technology with place-based stewardship.', sortOrder: 150 },
-  { name: 'Nick Kaufmann', initials: 'NK', memberRole: 'member', subtitle: 'InCitu', bio: 'Building tools for community-informed development, making planning more participatory through digital engagement platforms.', sortOrder: 160 },
-  { name: 'Hilary Ho', initials: 'HH', memberRole: 'member', subtitle: 'HR&A', bio: 'Advising on urban economics and real estate strategy, bringing financial rigor to technology-informed planning.', sortOrder: 170 },
 ]
 for (const m of members) await upsertMember(m.name as string, m)
 
