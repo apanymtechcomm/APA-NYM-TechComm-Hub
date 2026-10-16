@@ -340,11 +340,10 @@ if (!hasNav) {
       siteTitle: 'APA NYM TechComm',
       siteSubtitle: 'American Planning Association New York Metro Chapter Technology Committee',
       navItems: [
-        { link: { type: 'custom', url: '/about', label: 'About', newTab: false } },
-        { link: { type: 'custom', url: '/members', label: 'Members', newTab: false } },
         { link: { type: 'custom', url: '/events', label: 'Events', newTab: false } },
         { link: { type: 'custom', url: '/newsletters', label: 'Newsletters', newTab: false } },
         { link: { type: 'custom', url: '/resources', label: 'Resources', newTab: false } },
+        { link: { type: 'custom', url: '/members', label: 'Committee', newTab: false } },
         { link: { type: 'custom', url: '/contact', label: 'Contact', newTab: false } },
       ],
     },
