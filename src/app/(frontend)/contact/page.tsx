@@ -1,4 +1,7 @@
+import Link from 'next/link'
 import React from 'react'
+
+import { SignupForm } from '@/Components-site/SignupForm'
 
 export default function ContactPage() {
   return (
@@ -15,12 +18,14 @@ export default function ContactPage() {
         </p>
       </div>
       <div className="contact-block">
-        <h2>Join the Listserv</h2>
+        <h2>Join the Committee List</h2>
         <p>
-          Stay connected with the NYC planning technology community. Get event announcements, tool recommendations, and
-          discussion digests.
+          Choose the updates you want from the NYC planning technology community. Your signup details stay confidential.
         </p>
-        <a href="mailto:apa.techcomm@gmail.com">Join the Listserv</a>
+        <SignupForm
+          apiUrl={process.env.NEXT_PUBLIC_SIGNUP_API_URL ?? ''}
+          turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''}
+        />
       </div>
       <div className="contact-block">
         <h2>Follow Us</h2>
@@ -30,7 +35,7 @@ export default function ContactPage() {
             APA Tech Committee
           </a>
           <br />
-          Newsletter: <a href="/newsletters">BYTE BY BYTE — Read the latest</a>
+          Newsletter: <Link href="/newsletters">BYTE BY BYTE — Read the latest</Link>
         </p>
       </div>
     </main>

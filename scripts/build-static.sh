@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Static export of the public site to dist/ for GitHub Pages
-# (repo apanytechcomm/APA-NYM-TechComm-Hub, served under /APA-NYM-TechComm-Hub/).
+# (repo apanymtechcomm/APA-NYM-TechComm-Hub, served under /APA-NYM-TechComm-Hub/).
 #
 # Two-mode build: BUILD_MODE=static -> next.config.ts sets output:'export',
 # distDir 'dist', basePath '/APA-NYM-TechComm-Hub', unoptimized images.
@@ -37,7 +37,7 @@ done
 
 BUILD_MODE=static \
 NEXT_PUBLIC_BASE_PATH=/APA-NYM-TechComm-Hub \
-NEXT_PUBLIC_SERVER_URL=https://apanytechcomm.github.io \
+NEXT_PUBLIC_SERVER_URL=https://apanymtechcomm.github.io \
 ./node_modules/.bin/next build
 
 restore

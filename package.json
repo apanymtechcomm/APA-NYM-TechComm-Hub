@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "cf:typegen": "wrangler types worker/worker-configuration.d.ts --env-file .dev.vars.example",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
@@ -19,10 +20,15 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "typecheck": "tsc --noEmit && tsc -p worker/tsconfig.json",
+    "worker:check": "wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "worker:migrate:local": "wrangler d1 migrations apply DB --local",
+    "worker:test": "vitest run --config ./vitest.config.mts tests/int/signup-worker.int.spec.ts tests/int/signup-form.int.spec.tsx"
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.90.2",
+    "@payloadcms/db-sqlite": "3.90.2",
     "@payloadcms/live-preview-react": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/plugin-form-builder": "3.90.2",
@@ -51,8 +57,7 @@
     "react-dom": "19.2.6",
     "react-hook-form": "7.71.1",
     "sharp": "0.35.4",
-    "tailwind-merge": "^3.4.0",
-    "@payloadcms/db-sqlite": "3.90.2"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -76,17 +81,11 @@
     "tw-animate-css": "^1.4.0",
     "typescript": "5.7.3",
     "vite-tsconfig-paths": "6.0.5",
-    "vitest": "4.0.18"
+    "vitest": "4.0.18",
+    "wrangler": "4.151.1"
   },
   "engines": {
     "node": ">=20.18.1",
     "pnpm": "^9 || ^10 || ^11"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild",
-      "unrs-resolver"
-    ]
   }
 }

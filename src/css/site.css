@@ -588,3 +588,94 @@
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
 }
+
+/* Confidential signup */
+.nys-site .signup-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  max-width: 620px;
+}
+.nys-site .signup-field {
+  display: grid;
+  gap: 5px;
+}
+.nys-site .signup-field label,
+.nys-site .signup-preferences legend {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--nys-blue-dark);
+}
+.nys-site .signup-field input {
+  width: 100%;
+  border: 1px solid var(--nys-blue-mid);
+  border-radius: 3px;
+  background: var(--nys-white);
+  color: var(--nys-text);
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 10px;
+}
+.nys-site .signup-field input:focus,
+.nys-site .signup-submit:focus {
+  outline: 3px solid rgba(0, 71, 171, 0.22);
+  outline-offset: 2px;
+}
+.nys-site .signup-preferences {
+  display: grid;
+  gap: 7px;
+  border: 1px dashed var(--nys-blue-mid);
+  padding: 12px;
+}
+.nys-site .signup-preferences label,
+.nys-site .signup-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+}
+.nys-site .signup-preferences input,
+.nys-site .signup-consent input {
+  flex: none;
+  margin-top: 4px;
+}
+.nys-site .signup-privacy-note,
+.nys-site .signup-config-notice {
+  font-size: 11px !important;
+  color: var(--nys-text-muted);
+}
+.nys-site .signup-turnstile {
+  min-height: 65px;
+}
+.nys-site .signup-submit {
+  justify-self: start;
+  border: 1px solid var(--nys-blue);
+  background: var(--nys-blue);
+  color: var(--nys-white);
+  cursor: pointer;
+  font-family: var(--nys-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 9px 16px;
+  text-transform: uppercase;
+}
+.nys-site .signup-submit:hover,
+.nys-site .signup-submit:focus {
+  background: var(--nys-blue-mid);
+}
+.nys-site .signup-submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.nys-site .signup-message {
+  font-size: 12px !important;
+  font-weight: 700;
+}
+.nys-site .signup-message.success {
+  color: #176b35;
+}
+.nys-site .signup-message.error {
+  color: #9a1f1f;
+}

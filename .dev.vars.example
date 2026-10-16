@@ -1,0 +1,2 @@
+# Used only by `wrangler dev`; do not commit `.dev.vars`.
+TURNSTILE_SECRET="replace-with-a-Turnstile-secret"

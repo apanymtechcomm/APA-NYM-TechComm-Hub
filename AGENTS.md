@@ -23,7 +23,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Stack (Round 1)
 - Payload 3.90.2 website template + Next.js 16.3.3 + SQLite (`file:./apa-nym-techcomm-website.db`), pnpm.
-- Dev server **:3005** (`scripts/dev.sh`); admin at /admin.
+- Dev server **:3115** (`scripts/dev.sh`); admin at /admin.
 - Static export: `scripts/build-static.sh` → `dist/` (GitHub Pages shape, basePath `/APA-NYM-TechComm-Hub`, route stash w/ EXIT-trap restore).
 - Content seed: `NODE_ENV=production node_modules/.bin/tsx scripts/seed.ts` (idempotent).
 - Typegen: `scripts/regen-types.sh` (payload CLI generate:types hangs in this env).

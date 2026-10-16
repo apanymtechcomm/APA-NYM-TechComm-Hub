@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "apa-nym-techcomm-signup",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-10-16",
+  "routes": [
+    { "pattern": "signup.abucks.world", "custom_domain": true }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "apa-nym-techcomm-signups",
+      "database_id": "894bd4c7-5b43-4a97-9129-c844b707a6a4",
+      "migrations_dir": "worker/migrations"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "SIGNUP_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://apanymtechcomm.github.io,http://localhost:3115,http://127.0.0.1:3115",
+    "CONSENT_SOURCE": "public-website",
+    "CONSENT_VERSION": "2026-10-16",
+    "SIGNUP_STATUS": "active",
+    "TURNSTILE_EXPECTED_ACTION": "signup",
+    "TURNSTILE_HOSTNAMES": "apanymtechcomm.github.io,localhost,127.0.0.1"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.05
+    }
+  }
+}

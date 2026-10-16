@@ -3,6 +3,22 @@
 Append-only log of each round of development on this repo (part of DevOS
 project **PROJ-033**). New entries go at the top.
 
+## Round 4 — 2026-10-16 · Signup system deployed live (DEV-299 DONE)
+
+- Deployed with Andrew's explicit approval: D1 `apa-nym-techcomm-signups` (`894bd4c7-5b43-4a97-9129-c844b707a6a4`) created and remote migration applied; Turnstile widget `apanymtechcomm-signup-v2` (sitekey `0x4AAAAAAFYwLlgRW3Q8OeF-`); secret stored via `wrangler secret put` stdin. First widget's secret leaked into a tool transcript — rotated by recreating the widget and deleting the exposed one.
+- Worker `apa-nym-techcomm-signup` deployed on custom domain **signup.abucks.world** (account zone `abucks.world`). `workers.dev` is TLS-blocked on this network (handshake failure from both WSL and Windows), so the custom domain is the production endpoint; workers.dev subdomain `abuck-workers` was registered as fallback.
+- Negative probes on live API: GET / 404, GET /v1/signup 405, POST bad origin 403, oversized 413, missing/fake Turnstile token 400, generic messages only; preflight returns exact GitHub Pages origin. D1 stayed at 0 rows through all probes.
+- Static export rebuilt with `NEXT_PUBLIC_SIGNUP_API_URL` + `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, leak-scanned clean, `.nojekyll` added, published to `gh-pages` via the orphan-repo flow. Live contact page serves the form; real browser signup (Turnstile solved non-interactively) wrote a consent-stamped D1 row; probe row deleted after readback (table back to 0). Build gotcha: run `scripts/build-static.sh`, never bare `next build` (unstashed `(payload)`/`next` routes break `output: export`).
+- Not committed: intentional diff is 19 tracked files + new worker/wrangler/test files; `notes/dev-server.log` remains pre-existing dirty.
+
+## Round 3 — 2026-10-16 · Confidential signup Worker and public form
+
+- Added a static-site signup form backed by a Cloudflare Worker, D1, Turnstile, exact-origin CORS, a Cloudflare rate-limit binding, bounded JSON parsing, normalized/upserted records, consent metadata, structured non-PII logs, and no public read route. Suppressed records remain suppressed on later submissions.
+- Added the D1 migration, Wrangler configuration/types, local/deployment runbook, public build variables, focused Worker/form tests, and fail-safe form copy when public settings are absent. The all-zero D1 ID remains an intentional pre-deployment placeholder.
+- Corrected local/e2e port references to registered port `3115`, repaired the Next 16 flat ESLint configuration, and corrected the GitHub Pages owner hostname used by the static build. Removed build-generated `public/robots.txt` and `public/sitemap.xml`; `notes/dev-server.log` remains untouched pre-existing local output.
+- Verification: 16/16 focused tests passed; app + Worker TypeScript passed; focused ESLint passed; Wrangler local migration and dry-run passed (8.81 KiB upload, 2.96 KiB gzip); static export produced 10 routes; 189 exported files passed configured-form, host, route-restore, and zero-secret-leak checks; a local D1 conflict probe confirmed suppressed status is preserved. Full-repo ESLint now executes but still reports pre-existing template issues outside this feature. Browser e2e remains unexecuted because Playwright revision 1208 is absent and two install attempts timed out.
+- No commit, push, deploy, Cloudflare resource creation, remote migration, or Pages publication was performed. Next: create D1/Turnstile, replace the placeholder D1 ID, set the Worker secret and public build values, apply the remote migration, dry-run again, deploy only with approval, rebuild Pages, and complete a live signup/readback check.
+
 ## Round 2 — 2026-10-12 · Restore Payload admin through Tailscale
 
 - Root cause: Next.js 16 dev-origin protection returned HTTP 403 for Payload admin client chunks requested through `vengeance.tail92bcba.ts.net`. The `/admin` HTML shell still returned 200, but React could not hydrate and the body remained blank.

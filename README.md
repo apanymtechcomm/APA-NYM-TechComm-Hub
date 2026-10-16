@@ -2,12 +2,12 @@
 
 Standalone Payload CMS deployment of the APA New York Metro Chapter Technology
 Committee website — ported from the static GitHub Pages site
-(`apanytechcomm/APA-NYM-TechComm-Hub`). DevOS project: **PROJ-033**.
+(`apanymtechcomm/APA-NYM-TechComm-Hub`). DevOS project: **PROJ-033**.
 
 ## Stack
 
 - Payload CMS 3.90.2 (website template) + Next.js 16.3.3 + React 19, SQLite (repo-local `file:./apa-nym-techcomm-website.db`), pnpm
-- Dev/admin server on **:3005** (`scripts/dev.sh`); static export to `dist/` for GitHub Pages under `/APA-NYM-TechComm-Hub/`
+- Dev/admin server on **:3115** (`scripts/dev.sh`); static export to `dist/` for GitHub Pages under `/APA-NYM-TechComm-Hub/`
 
 ## Content model
 
@@ -26,7 +26,7 @@ Committee website — ported from the static GitHub Pages site
 
 ```bash
 scripts/install.sh          # first install (CI=true pnpm install)
-scripts/dev.sh              # dev server http://localhost:3005 (admin /admin)
+scripts/dev.sh              # dev server http://127.0.0.1:3115 (admin /admin)
 scripts/regen-types.sh      # payload-types.ts (CLI generate:types HANGS here)
 scripts/build-static.sh     # static export -> dist/ (GitHub Pages shape)
 scripts/seed.ts             # idempotent content seed:
@@ -37,7 +37,7 @@ scripts/seed.ts             # idempotent content seed:
 
 `dist/` is a GitHub-Pages-shaped static export (basePath `/APA-NYM-TechComm-Hub`,
 all routes pre-rendered, media statically served via `mediaUrl`). Publishing
-means pushing to `apanytechcomm/APA-NYM-TechComm-Hub` — that replaces the live
+means pushing to `apanymtechcomm/APA-NYM-TechComm-Hub` — that replaces the live
 Pages site, so it is an explicit human step every time.
 
 ## Conventions

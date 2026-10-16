@@ -18,6 +18,10 @@ public/media/
 # env & secrets
 .env
 .env.local
+.dev.vars
+
+# Cloudflare local state and dry-run bundles
+.wrangler/
 
 # playwright
 /test-results/
