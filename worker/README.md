@@ -1,6 +1,6 @@
 # Confidential signup Worker
 
-This Worker accepts only `POST /v1/signup` and stores signup details in D1. It intentionally has no list, lookup, admin, or export route. Payload synchronization is a later, separately authenticated integration; until then, review/export data only through authenticated Cloudflare tooling.
+This Worker accepts `POST /v1/signup` for communication preferences and the distinct `POST /v1/event-rsvps` endpoint for event registration. Both store confidential details in D1. It intentionally has no public list, lookup, admin, or export route; review/export data only through authenticated Cloudflare tooling.
 
 ## Stored fields
 
@@ -12,6 +12,8 @@ This Worker accepts only `POST /v1/signup` and stores signup details in D1. It i
 - created/updated timestamps
 
 The static site contains no signup records. Worker logs contain only an event name and random request ID—never email, name, IP, token, or request body.
+
+Event RSVPs are stored separately from communication consent in `event_rsvps`: event slug, normalized email, required building-entry full name, required attendance mode, optional lab-interest and CM-credit choices, and created/updated timestamps. A repeated email for the same event updates that RSVP rather than creating a duplicate roster row.
 
 ## Controls
 
@@ -32,9 +34,10 @@ pnpm run cf:typegen
 pnpm run worker:migrate:local
 pnpm run worker:test
 pnpm run worker:check
+pnpm run worker:rsvp-roster:local
 ```
 
-`worker:migrate:local` writes only Wrangler's ignored local state. `worker:check` is a packaging dry run and does not deploy.
+`worker:migrate:local` writes only Wrangler's ignored local state. `worker:check` is a packaging dry run and does not deploy. The local roster command prints CSV for in-person Nov. 19 attendees only. For the remote roster, first verify the active Cloudflare account and database, then run `pnpm exec tsx scripts/export-event-rsvp-roster.ts --remote --confirm-remote`; the explicit confirmation prevents accidental remote access. The same reviewed query is stored at `worker/queries/nov-19-building-roster.sql`.
 
 ## One-time Cloudflare setup — run only after publication approval
 
@@ -61,6 +64,7 @@ These commands are intentionally not run by this implementation because they cre
 7. Set these public values in the site build environment and rebuild the static export:
    ```bash
    NEXT_PUBLIC_SIGNUP_API_URL=https://<worker-host>/v1/signup
+   NEXT_PUBLIC_EVENT_RSVP_API_URL=https://<worker-host>/v1/event-rsvps
    NEXT_PUBLIC_TURNSTILE_SITE_KEY=<public-site-key>
    ```
 8. If a custom Pages hostname is added, add its exact origin to `ALLOWED_ORIGINS` and its hostname to `TURNSTILE_HOSTNAMES`, regenerate types, test, and dry-run before deployment.

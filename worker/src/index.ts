@@ -1,9 +1,25 @@
 const SIGNUP_PATH = '/v1/signup'
+const EVENT_RSVP_PATH = '/v1/event-rsvps'
+const NOVEMBER_EVENT_SLUG = '2026-11-19-tech-table'
+const BUILDING_ENTRY_CUTOFF_UTC = Date.parse('2026-11-19T05:00:00.000Z')
 const MAX_BODY_BYTES = 16 * 1024
-const SUCCESS_BODY = {
+const SIGNUP_SUCCESS_BODY = {
   message: 'Thanks — your preferences have been saved.',
   ok: true,
 } as const
+const RSVP_SUCCESS_BODY = {
+  message: 'Thanks — your RSVP has been saved.',
+  ok: true,
+} as const
+
+const ATTENDANCE_MODES = new Set([
+  'in_person_full_event',
+  'in_person_program_only',
+  'virtual_program_only',
+  'in_person_happy_hour_only',
+] as const)
+const LAB_INTEREST_CHOICES = new Set(['yes', 'no', 'unsure'] as const)
+const CM_CREDIT_CHOICES = new Set(['yes', 'no'] as const)
 
 class RequestError extends Error {
   constructor(
@@ -20,6 +36,24 @@ type SignupInput = {
   email: string
   eventNotifications: boolean
   name: string | null
+  turnstileToken: string
+}
+
+type AttendanceMode =
+  | 'in_person_full_event'
+  | 'in_person_program_only'
+  | 'virtual_program_only'
+  | 'in_person_happy_hour_only'
+type LabInterest = 'yes' | 'no' | 'unsure'
+type CmCredit = 'yes' | 'no'
+
+type EventRsvpInput = {
+  attendanceMode: AttendanceMode
+  cmCredit: CmCredit | null
+  email: string
+  eventSlug: typeof NOVEMBER_EVENT_SLUG
+  fullName: string
+  labInterest: LabInterest | null
   turnstileToken: string
 }
 
@@ -68,6 +102,14 @@ function normalizeName(value: string): string | null {
   return normalized || null
 }
 
+function requiredTurnstileToken(body: Record<string, unknown>): string {
+  const token = body.turnstileToken
+  if (typeof token !== 'string' || token.length < 1 || token.length > 2048) {
+    throw new RequestError(400, 'Please check the form and try again.')
+  }
+  return token
+}
+
 function parseSignup(value: unknown): SignupInput {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     throw new RequestError(400, 'Please check the form and try again.')
@@ -78,7 +120,6 @@ function parseSignup(value: unknown): SignupInput {
   const name = typeof body.name === 'string' ? normalizeName(body.name) : null
   const committeeEmails = body.committeeEmails
   const eventNotifications = body.eventNotifications
-  const turnstileToken = body.turnstileToken
 
   if (
     email.length > 254 ||
@@ -87,10 +128,7 @@ function parseSignup(value: unknown): SignupInput {
     typeof committeeEmails !== 'boolean' ||
     typeof eventNotifications !== 'boolean' ||
     (!committeeEmails && !eventNotifications) ||
-    body.consent !== true ||
-    typeof turnstileToken !== 'string' ||
-    turnstileToken.length < 1 ||
-    turnstileToken.length > 2048
+    body.consent !== true
   ) {
     throw new RequestError(400, 'Please check the form and try again.')
   }
@@ -101,7 +139,60 @@ function parseSignup(value: unknown): SignupInput {
     email,
     eventNotifications,
     name,
-    turnstileToken,
+    turnstileToken: requiredTurnstileToken(body),
+  }
+}
+
+function optionalChoice<T extends string>(
+  value: unknown,
+  allowed: ReadonlySet<T>,
+): T | null | undefined {
+  if (value === null || value === undefined || value === '') return null
+  return typeof value === 'string' && allowed.has(value as T) ? value as T : undefined
+}
+
+function parseEventRsvp(value: unknown): EventRsvpInput {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new RequestError(400, 'Please check the form and try again.')
+  }
+
+  const body = value as Record<string, unknown>
+  const email = typeof body.email === 'string' ? normalizeEmail(body.email) : ''
+  const fullName = typeof body.fullName === 'string' ? normalizeName(body.fullName) : null
+  const attendanceMode = body.attendanceMode
+  const labInterest = optionalChoice(body.labInterest, LAB_INTEREST_CHOICES)
+  const cmCredit = optionalChoice(body.cmCredit, CM_CREDIT_CHOICES)
+
+  if (
+    body.eventSlug !== NOVEMBER_EVENT_SLUG ||
+    email.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    !fullName ||
+    fullName.length < 2 ||
+    fullName.length > 120 ||
+    typeof attendanceMode !== 'string' ||
+    !ATTENDANCE_MODES.has(attendanceMode as AttendanceMode) ||
+    labInterest === undefined ||
+    cmCredit === undefined
+  ) {
+    throw new RequestError(400, 'Please check the form and try again.')
+  }
+
+  if (attendanceMode.startsWith('in_person_') && Date.now() >= BUILDING_ENTRY_CUTOFF_UTC) {
+    throw new RequestError(
+      409,
+      'The November 18 building-entry deadline has passed. Please select virtual program attendance.',
+    )
+  }
+
+  return {
+    attendanceMode: attendanceMode as AttendanceMode,
+    cmCredit,
+    email,
+    eventSlug: NOVEMBER_EVENT_SLUG,
+    fullName,
+    labInterest,
+    turnstileToken: requiredTurnstileToken(body),
   }
 }
 
@@ -150,6 +241,7 @@ async function readBoundedJson(request: Request): Promise<unknown> {
 
 async function anonymousRateLimitKey(request: Request): Promise<string> {
   const fingerprint = [
+    new URL(request.url).pathname,
     request.headers.get('cf-connecting-ip') ?? 'local',
     request.headers.get('user-agent') ?? 'unknown',
   ].join('\n')
@@ -157,10 +249,15 @@ async function anonymousRateLimitKey(request: Request): Promise<string> {
   return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('')
 }
 
-async function verifyTurnstile(input: SignupInput, request: Request, env: Env): Promise<boolean> {
+async function verifyTurnstile(
+  token: string,
+  expectedAction: string,
+  request: Request,
+  env: Env,
+): Promise<boolean> {
   const payload = new FormData()
   payload.set('secret', env.TURNSTILE_SECRET)
-  payload.set('response', input.turnstileToken)
+  payload.set('response', token)
   payload.set('idempotency_key', crypto.randomUUID())
 
   const remoteIp = request.headers.get('cf-connecting-ip')
@@ -175,7 +272,7 @@ async function verifyTurnstile(input: SignupInput, request: Request, env: Env): 
   const result = (await response.json()) as TurnstileResponse
   return (
     result.success === true &&
-    result.action === env.TURNSTILE_EXPECTED_ACTION &&
+    result.action === expectedAction &&
     typeof result.hostname === 'string' &&
     csvSet(env.TURNSTILE_HOSTNAMES).has(result.hostname)
   )
@@ -226,34 +323,83 @@ async function saveSignup(input: SignupInput, env: Env): Promise<void> {
     .run()
 }
 
-async function handleSignup(request: Request, env: Env, origin: string): Promise<Response> {
-  if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) {
-    return jsonResponse(415, { message: 'Content-Type must be application/json.', ok: false }, origin)
-  }
+async function saveEventRsvp(input: EventRsvpInput, env: Env): Promise<void> {
+  const now = new Date().toISOString()
+  await env.DB.prepare(
+    `INSERT INTO event_rsvps (
+      id,
+      event_slug,
+      email_normalized,
+      full_name,
+      attendance_mode,
+      lab_interest,
+      cm_credit,
+      created_at,
+      updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(event_slug, email_normalized) DO UPDATE SET
+      full_name = excluded.full_name,
+      attendance_mode = excluded.attendance_mode,
+      lab_interest = excluded.lab_interest,
+      cm_credit = excluded.cm_credit,
+      updated_at = excluded.updated_at`,
+  )
+    .bind(
+      crypto.randomUUID(),
+      input.eventSlug,
+      input.email,
+      input.fullName,
+      input.attendanceMode,
+      input.labInterest,
+      input.cmCredit,
+      now,
+      now,
+    )
+    .run()
+}
 
-  const rateLimit = await env.SIGNUP_RATE_LIMITER.limit({
+async function rateLimit(request: Request, env: Env, origin: string): Promise<Response | null> {
+  const result = await env.SIGNUP_RATE_LIMITER.limit({
     key: await anonymousRateLimitKey(request),
   })
-  if (!rateLimit.success) {
-    return jsonResponse(429, { message: 'Please wait before trying again.', ok: false }, origin, {
-      'retry-after': '60',
-    })
-  }
+  if (result.success) return null
+  return jsonResponse(429, { message: 'Please wait before trying again.', ok: false }, origin, {
+    'retry-after': '60',
+  })
+}
+
+async function handleSignup(request: Request, env: Env, origin: string): Promise<Response> {
+  const limited = await rateLimit(request, env, origin)
+  if (limited) return limited
 
   const input = parseSignup(await readBoundedJson(request))
-  if (!(await verifyTurnstile(input, request, env))) {
+  if (!(await verifyTurnstile(input.turnstileToken, env.TURNSTILE_EXPECTED_ACTION, request, env))) {
     return jsonResponse(400, { message: 'Please refresh the verification and try again.', ok: false }, origin)
   }
 
   await saveSignup(input, env)
   console.log(JSON.stringify({ event: 'signup_saved', requestId: crypto.randomUUID() }))
-  return jsonResponse(200, SUCCESS_BODY, origin)
+  return jsonResponse(200, SIGNUP_SUCCESS_BODY, origin)
+}
+
+async function handleEventRsvp(request: Request, env: Env, origin: string): Promise<Response> {
+  const limited = await rateLimit(request, env, origin)
+  if (limited) return limited
+
+  const input = parseEventRsvp(await readBoundedJson(request))
+  if (!(await verifyTurnstile(input.turnstileToken, 'event-rsvp', request, env))) {
+    return jsonResponse(400, { message: 'Please refresh the verification and try again.', ok: false }, origin)
+  }
+
+  await saveEventRsvp(input, env)
+  console.log(JSON.stringify({ event: 'event_rsvp_saved', requestId: crypto.randomUUID() }))
+  return jsonResponse(200, RSVP_SUCCESS_BODY, origin)
 }
 
 const worker = {
   async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url)
-    if (url.pathname !== SIGNUP_PATH) {
+    if (url.pathname !== SIGNUP_PATH && url.pathname !== EVENT_RSVP_PATH) {
       return jsonResponse(404, { message: 'Not found.', ok: false }, null)
     }
 
@@ -278,14 +424,19 @@ const worker = {
       })
     }
     if (!origin) return jsonResponse(403, { message: 'Origin not allowed.', ok: false }, null)
+    if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) {
+      return jsonResponse(415, { message: 'Content-Type must be application/json.', ok: false }, origin)
+    }
 
     try {
-      return await handleSignup(request, env, origin)
+      return url.pathname === SIGNUP_PATH
+        ? await handleSignup(request, env, origin)
+        : await handleEventRsvp(request, env, origin)
     } catch (error) {
       if (error instanceof RequestError) {
         return jsonResponse(error.status, { message: error.message, ok: false }, origin)
       }
-      console.error(JSON.stringify({ event: 'signup_failed', requestId: crypto.randomUUID() }))
+      console.error(JSON.stringify({ event: 'request_failed', requestId: crypto.randomUUID() }))
       return jsonResponse(500, { message: 'Please try again later.', ok: false }, origin)
     }
   },

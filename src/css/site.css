@@ -625,7 +625,8 @@
   letter-spacing: 1px;
   color: var(--nys-blue-dark);
 }
-.nys-site .signup-field input {
+.nys-site .signup-field input,
+.nys-site .signup-field select {
   width: 100%;
   border: 1px solid var(--nys-blue-mid);
   border-radius: 3px;
@@ -636,6 +637,7 @@
   padding: 9px 10px;
 }
 .nys-site .signup-field input:focus,
+.nys-site .signup-field select:focus,
 .nys-site .signup-submit:focus {
   outline: 3px solid rgba(0, 71, 171, 0.22);
   outline-offset: 2px;
@@ -696,4 +698,31 @@
 }
 .nys-site .signup-message.error {
   color: #9a1f1f;
+}
+
+/* Event RSVP */
+.nys-site .event-rsvp-page {
+  max-width: 760px;
+}
+.nys-site .event-rsvp-back {
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.nys-site .event-deadline-notice {
+  background: #fff4dc;
+  border: 3px solid #a83b12;
+  margin: 20px 0;
+  padding: 16px 18px;
+}
+.nys-site .event-deadline-notice h2 {
+  color: #8a2d0d;
+  font-size: 18px;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+.nys-site .event-deadline-notice p {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
 }

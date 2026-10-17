@@ -1,4 +1,5 @@
 import { getPayloadClient } from '@/lib/payload'
+import Link from 'next/link'
 import React from 'react'
 
 export default async function EventsPage() {
@@ -20,9 +21,18 @@ export default async function EventsPage() {
           </div>
           <p className="event-desc">{e.description}</p>
           {e.rsvpUrl && (
-            <a className="event-rsvp" href={e.rsvpUrl} target="_blank" rel="noreferrer">
+            <Link
+              className="event-rsvp"
+              href={e.rsvpUrl}
+              {...(/^https?:\/\//.test(e.rsvpUrl) ? { rel: 'noreferrer', target: '_blank' } : {})}
+            >
               {e.status === 'past' && /github\.com/.test(e.rsvpUrl) ? 'View the lab →' : 'RSVP →'}
-            </a>
+            </Link>
+          )}
+          {!e.rsvpUrl && e.status !== 'past' && (
+            <span aria-disabled="true" className="event-rsvp">
+              RSVP link coming soon
+            </span>
           )}
         </article>
       ))}

@@ -3,6 +3,19 @@
 Append-only log of each round of development on this repo (part of DevOS
 project **PROJ-033**). New entries go at the top.
 
+## Round 7 — 2026-10-17 · Native Nov. 19 event RSVP (DEV-305)
+
+- Added a dedicated `/events/november-19-2026/rsvp` page and `POST /v1/event-rsvps` Worker endpoint, separate from newsletter/committee consent. The form requires email, the attendee’s full building-entry name, and one of four attendance modes; lab-interest and CM-credit responses are optional. A prominent November 18 notice explains that late or unlisted attendees must join virtually, and the Worker rejects in-person submissions after the end of November 18 EST while continuing to accept virtual attendance.
+- Added D1 migration `0002_create_event_rsvps.sql` with per-event/email upserts, strict attendance/optional-choice checks, and roster indexes. Added an authenticated-tooling-only CSV roster exporter for in-person attendees, a reviewed SQL query, local-by-default behavior, and an explicit `--confirm-remote` guard. No public read endpoint was added.
+- Updated the Payload DB event and `scripts/seed.ts` to `registration-open` with the native RSVP route; updated the events CTA to preserve the GitHub Pages base path. No venue or hybrid-access URL was invented.
+- Verification: 30/30 focused Worker/form tests passed; app and Worker TypeScript passed; focused ESLint reported 0 errors (the existing events page still has 2 `any` warnings); both D1 migrations applied locally; a local probe verified all 9 schema columns and in-person CSV output, then was deleted with 0 probe rows remaining; Wrangler dry-run packaged 12.97 KiB (3.80 KiB gzip); static export generated 11/11 pages including the RSVP route; 11/11 exact export checks passed. No commit, push, remote migration, Worker deploy, Pages publish, or secret change was performed.
+
+## Round 6 — 2026-10-17 · November Tech Table event (DEV-305)
+
+- Replaced the placeholder Fall Tech Table content with the Thursday, November 19, 2026 agenda for “No Cloud Required Part 2,” including the hands-on open-source AI agents/Hermes lab, one CM credit, happy-hour-only attendance option, and the November 18 full-name deadline for building entry.
+- Audited the existing confidential signup system. It collects email plus an optional name and communication preferences, but it cannot require full name or record in-person, virtual, or happy-hour-only attendance. The event therefore has no invented RSVP URL; upcoming events without one render a visible “RSVP link coming soon” placeholder. Venue and virtual access details remain explicitly unannounced.
+- Verification: Payload Local API upsert and independent readback confirmed DB record ID 3 and all 10 event fields; `pnpm exec tsc --noEmit` passed; `scripts/build-static.sh` generated all 10 routes; exact export checks passed 8/8 strings on `dist/events/index.html` and 6/6 event-summary strings on `dist/index.html`. No commit, push, publication, Worker change, or deployment performed.
+
 ## Round 5 — 2026-10-16 · Committee governance and open roles
 
 - Reworked `/members` as the Committee page while preserving Andrew Buck as the sole current member card; added four clearly unfilled cards for Co-Chair, Secretary, Treasurer, and Communications plus the `apa.techcomm@gmail.com` interest CTA.

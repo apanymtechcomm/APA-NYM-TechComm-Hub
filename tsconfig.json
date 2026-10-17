@@ -49,6 +49,7 @@
   "exclude": [
     "node_modules",
     "worker",
-    "tests/int/signup-worker.int.spec.ts"
+    "tests/int/signup-worker.int.spec.ts",
+    "tests/int/event-rsvp-worker.int.spec.ts"
   ]
 }

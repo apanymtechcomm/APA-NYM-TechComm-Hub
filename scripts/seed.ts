@@ -159,16 +159,18 @@ await upsertEvent('spring-tech-table', {
   featured: true,
 })
 await upsertEvent('fall-tech-table', {
-  title: 'Fall Tech Table',
+  title: 'November Tech Table — No Cloud Required Part 2',
   slug: 'fall-tech-table',
-  eventDate: '2026-11-19T18:00:00.000-05:00',
+  eventDate: '2026-11-19T23:00:00.000Z',
   timeString: '6:00 PM – 8:00 PM EST',
-  location: 'VHB - One Penn Plaza, New York',
+  location: 'Venue and virtual access details to be announced',
   description:
-    'Committee speaker on technology trends impacting planning and placemaking. Open discussion on where the field is heading and what tools planners should be watching. Details to be announced.',
-  status: 'upcoming',
+    'Agenda: 6:00 PM introductions; 6:10 PM committee updates; 6:20–6:55 PM “No Cloud Required Part 2,” a hands-on lab on open-source AI agents and Hermes (1 CM credit); 6:55 PM closing, resources, and CM reminder; 7:00–8:00 PM happy hour. Happy-hour-only attendance is welcome. Building entry requires each in-person attendee’s full name by November 18. Late or unlisted in-person registrants must attend virtually.',
+  status: 'registration-open',
+  rsvpUrl: '/events/november-19-2026/rsvp',
+  cmCredits: '1 CM credit',
   featured: true,
-  hybrid: false,
+  hybrid: true,
 })
 await upsertEvent('nyc-nym-conference-no-cloud-required', {
   title: 'APA NYM Conference — No Cloud Required',
@@ -179,7 +181,7 @@ await upsertEvent('nyc-nym-conference-no-cloud-required', {
   description:
     'Session at the 2026 APA NYM Annual Conference: "No Cloud Required: A Hands-On Guide to Open-Source AI Tools for Planning Practice," presented by Andrew Buck. A brief overview of running open-source AI locally for planning work, followed by a hands-on lab. The lab materials live on the APA Technology Division GitHub.',
   status: 'past',
-  rsvpUrl: 'https://github.com/APA-Technology-Division',
+  rsvpUrl: 'https://github.com/apanymtechcomm/APA-NYM-Conf---No-Cloud-Required-Lab',
   hybrid: false,
 })
 
