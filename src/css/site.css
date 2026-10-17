@@ -433,7 +433,7 @@
   color: var(--nys-text-muted);
 }
 
-/* Members */
+/* Committee */
 .nys-site .member-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -460,21 +460,45 @@
   font-weight: 700;
   font-size: 14px;
 }
-.nys-site .member-card h3 {
+.nys-site .member-card h3,
+.nys-site .vacancy-card h3 {
   font-size: 13px;
   font-weight: 700;
   color: var(--nys-blue);
 }
-.nys-site .member-card .member-sub {
+.nys-site .member-card .member-sub,
+.nys-site .vacancy-label {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--nys-text-muted);
   margin-bottom: 4px;
 }
-.nys-site .member-card .member-bio {
+.nys-site .member-card .member-bio,
+.nys-site .vacancy-description {
   font-size: 12px;
   color: var(--nys-text);
+}
+.nys-site .vacancy-card {
+  border: 1px dashed var(--nys-blue-mid);
+  border-radius: 6px;
+  padding: 14px 16px;
+  background: var(--nys-white);
+}
+.nys-site .vacancy-card h3 {
+  margin-bottom: 6px;
+}
+.nys-site .vacancy-card .vacancy-description {
+  margin-bottom: 0;
+}
+.nys-site .committee-interest {
+  margin-top: 20px;
+}
+.nys-site .committee-interest a {
+  color: var(--nys-blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* Resources */

@@ -3,6 +3,12 @@
 Append-only log of each round of development on this repo (part of DevOS
 project **PROJ-033**). New entries go at the top.
 
+## Round 5 — 2026-10-16 · Committee governance and open roles
+
+- Reworked `/members` as the Committee page while preserving Andrew Buck as the sole current member card; added four clearly unfilled cards for Co-Chair, Secretary, Treasurer, and Communications plus the `apa.techcomm@gmail.com` interest CTA.
+- Grounded each two-sentence role summary in the official Committee bylaws draft and added `docs/committee-governance.md`, which records both official sources and distinguishes the draft Committee document from the adopted Chapter bylaws. Vacancies remain code-defined governance content rather than fictional Payload member records; the seed continues to contain only Andrew.
+- Verification: app and Worker TypeScript passed; focused ESLint passed; the static export built all 10 routes; programmatic export checks found exactly one member card (Andrew), four expected vacancy cards, four two-sentence descriptions, and the mailto CTA; the local dev page returned 200 and browser-rendered the same exact card set. No commit, push, publication, or Cloudflare change was performed; `notes/dev-server.log` remains untouched pre-existing local output.
+
 ## Round 4 — 2026-10-16 · Signup system deployed live (DEV-299 DONE)
 
 - Deployed with Andrew's explicit approval: D1 `apa-nym-techcomm-signups` (`894bd4c7-5b43-4a97-9129-c844b707a6a4`) created and remote migration applied; Turnstile widget `apanymtechcomm-signup-v2` (sitekey `0x4AAAAAAFYwLlgRW3Q8OeF-`); secret stored via `wrangler secret put` stdin. First widget's secret leaked into a tool transcript — rotated by recreating the widget and deleting the exposed one.
