@@ -170,15 +170,16 @@ await upsertEvent('fall-tech-table', {
   featured: true,
   hybrid: false,
 })
-await upsertEvent('winter-tech-table', {
-  title: 'Winter Tech Table',
-  slug: 'winter-tech-table',
-  eventDate: '2026-12-10T18:00:00.000-05:00',
-  timeString: '6:00 PM – 8:00 PM EST',
-  location: 'VHB - One Penn Plaza, New York',
+await upsertEvent('nyc-nym-conference-no-cloud-required', {
+  title: 'APA NYM Conference — No Cloud Required',
+  slug: 'nyc-nym-conference-no-cloud-required',
+  eventDate: '2026-10-15T19:20:00.000-04:00',
+  timeString: '3:20 PM – 4:20 PM EDT',
+  location: 'NYU Kimmel Center for University Life, Room 903',
   description:
-    "Holiday happy hour and year-end wrap-up. We'll review what the committee accomplished in 2026, preview the 2027 calendar, and celebrate with fellow planners. Light refreshments provided.",
-  status: 'cancelled',
+    'Session at the 2026 APA NYM Annual Conference: "No Cloud Required: A Hands-On Guide to Open-Source AI Tools for Planning Practice," presented by Andrew Buck. A brief overview of running open-source AI locally for planning work, followed by a hands-on lab. The lab materials live on the APA Technology Division GitHub.',
+  status: 'past',
+  rsvpUrl: 'https://github.com/APA-Technology-Division',
   hybrid: false,
 })
 

@@ -21,7 +21,7 @@ export default async function EventsPage() {
           <p className="event-desc">{e.description}</p>
           {e.rsvpUrl && (
             <a className="event-rsvp" href={e.rsvpUrl} target="_blank" rel="noreferrer">
-              RSVP →
+              {e.status === 'past' && /github\.com/.test(e.rsvpUrl) ? 'View the lab →' : 'RSVP →'}
             </a>
           )}
         </article>

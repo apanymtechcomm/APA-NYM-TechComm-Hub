@@ -30,7 +30,6 @@ export const Events: CollectionConfig = {
         { label: 'Registration open', value: 'registration-open' },
         { label: 'Upcoming', value: 'upcoming' },
         { label: 'Past', value: 'past' },
-        { label: 'Cancelled', value: 'cancelled' },
       ],
     },
     { name: 'rsvpUrl', type: 'text', admin: { description: 'Google Form or other RSVP link (leave empty if not open)' } },
