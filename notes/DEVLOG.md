@@ -59,3 +59,9 @@ project **PROJ-033**). New entries go at the top.
 - Decision: newsletter issue page renders as a styled article inside the site chrome (richText), NOT a wholesale port of the standalone issue HTML — the issue template's unique magazine layout is a candidate follow-up if fidelity is wanted.
 - Behavior change vs. original: homepage Events card and /newsletters CTAs are now CMS-driven — the Events card shows the next upcoming event by date (currently **Fall Tech Table, Oct 22 2026**), replacing the original hardcoded "Spring Tech Table". Say the word if Spring-only carding is preferred.
 - NEXT: baseline commit (this file), then push to `apanytechcomm/APA-NYM-TechComm-Hub` is USER-GATED (replaces the live Pages site).
+## Round — 2026-10-17: Published Nov 19 Tech Table RSVP (user-approved)
+- Remote D1 migration `0002_create_event_rsvps` confirmed applied (`event_rsvps` present, 9 columns; count 0).
+- Worker deployed: version `444b298f-2332-4d01-b1ef-303980f81a14` at signup.abucks.world; empty POST → 400 (validation live).
+- Static rebuild with `NEXT_PUBLIC_EVENT_RSVP_API_URL` + site key; 11/11 export assertions; published to `gh-pages` (92c7d2c → 2ba6868).
+- Live verified: events page shows Nov 19 agenda + `RSVP →` CTA (basePath-correct); RSVP page serves API URL + Turnstile key; Pages source gh-pages, status building→live.
+- Headless caveat: Turnstile challenge iframe does not render in the automation browser, so a token-validated live submission was not executed; client-side "complete the verification" path confirmed. Verify one real RSVP in a normal browser before relying on the roster.
