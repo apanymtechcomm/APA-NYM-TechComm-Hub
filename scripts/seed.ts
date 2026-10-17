@@ -165,7 +165,7 @@ await upsertEvent('fall-tech-table', {
   timeString: '6:00 PM – 8:00 PM EST',
   location: 'Venue and virtual access details to be announced',
   description:
-    'Agenda: 6:00 PM introductions; 6:10 PM committee updates; 6:20–6:55 PM “No Cloud Required Part 2,” a hands-on lab on open-source AI agents and Hermes (1 CM credit); 6:55 PM closing, resources, and CM reminder; 7:00–8:00 PM happy hour. Happy-hour-only attendance is welcome. Building entry requires each in-person attendee’s full name by November 18. Late or unlisted in-person registrants must attend virtually.',
+    'Back by popular demand: we are going to have a continuation of our open-source AI lab from the annual conference. This time we will get to doing the actual lab from the session where you and an AI agent will map the industrial heart of Long Island City, live, using nothing but free and open-source tools. We wrap up with committee updates, what to watch in 2027, and a happy hour. Come for the lab, stay for the drinks; happy-hour-only folks are welcome too.',
   status: 'registration-open',
   rsvpUrl: '/events/november-19-2026/rsvp',
   cmCredits: '1 CM credit',
