@@ -65,3 +65,8 @@ project **PROJ-033**). New entries go at the top.
 - Static rebuild with `NEXT_PUBLIC_EVENT_RSVP_API_URL` + site key; 11/11 export assertions; published to `gh-pages` (92c7d2c → 2ba6868).
 - Live verified: events page shows Nov 19 agenda + `RSVP →` CTA (basePath-correct); RSVP page serves API URL + Turnstile key; Pages source gh-pages, status building→live.
 - Headless caveat: Turnstile challenge iframe does not render in the automation browser, so a token-validated live submission was not executed; client-side "complete the verification" path confirmed. Verify one real RSVP in a normal browser before relying on the roster.
+
+## Round — 2026-10-17: Venue announced + membership invites
+- Event ID 3 (fall-tech-table) location set to "VHB - One Penn Plaza, New York"; mirrored in scripts/seed.ts; tmp script removed.
+- Rebuilt static (verified: "One Penn Plaza" present, "to be announced" 0 hits) and published gh-pages (a19e91f); live page verified showing venue.
+- Membership email invite created as Gmail DRAFT r7548050468304647720 on apa.techcomm@gmail.com — 125 BCC'd membership emails from Grist, HTML body per Andrew's doc edits. Andrew sends it himself.
