@@ -70,3 +70,8 @@ project **PROJ-033**). New entries go at the top.
 - Event ID 3 (fall-tech-table) location set to "VHB - One Penn Plaza, New York"; mirrored in scripts/seed.ts; tmp script removed.
 - Rebuilt static (verified: "One Penn Plaza" present, "to be announced" 0 hits) and published gh-pages (a19e91f); live page verified showing venue.
 - Membership email invite created as Gmail DRAFT r7548050468304647720 on apa.techcomm@gmail.com — 125 BCC'd membership emails from Grist, HTML body per Andrew's doc edits. Andrew sends it himself.
+
+## Round — 2026-10-17: Site-broken incident — missing .nojekyll
+- Symptom: live site unstyled, all `_next/*` assets 404. Root cause: venue republish omitted `touch dist/.nojekyll`, so GitHub Pages Jekyll excluded underscore dirs.
+- Fix: republished gh-pages with .nojekyll (802265b); verified .nojekyll 200, CSS 200, venue text live.
+- Prevention: build-static.sh now creates dist/.nojekyll itself.

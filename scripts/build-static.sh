@@ -44,4 +44,7 @@ restore
 trap - EXIT
 
 echo "OK: dist/ built"
+# GitHub Pages: without .nojekyll the legacy Jekyll build silently excludes
+# _next/ (underscore dirs) and the site serves unstyled HTML with 404 assets.
+touch dist/.nojekyll
 ls dist/ | head -30
