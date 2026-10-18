@@ -196,6 +196,7 @@ const resources: Array<[string, string, string, string]> = [
   ['Planning with a Black Mirror', 'A scenario-based card game created by APA\u2019s Technology Division to help planners explore the impacts of emerging technologies on communities.', 'Learn more', '/#black-mirror'],
   ['NYC OpenData', 'The City of New York\u2019s open data portal — datasets, APIs, and visualizations for planning research and civic technology projects.', 'Visit NYC OpenData', 'https://opendata.cityofnewyork.us/'],
   ['ZAP API', 'NYC Department of City Planning\u2019s Zoning Application Portal API — programmatic access to land use and zoning application data.', 'Explore ZAP API', 'https://zap-api.planning.nyc.gov/'],
+  ['ArtCraft', 'Free, open-source studio for AI-assisted image generation and 3D compositing — pose characters, build scenes with depth, and mix image, 3D, and generated assets on one canvas. Runs on macOS, Windows, and the web with no subscription.', 'Visit ArtCraft', 'https://getartcraft.com/'],
   ['BYTE BY BYTE Newsletter', 'Our quarterly publication covering technology trends, tool reviews, and committee updates for the NYC planning community.', 'Read the latest', '/newsletters'],
 ]
 for (const [title, description, linkLabel, linkUrl] of resources) {

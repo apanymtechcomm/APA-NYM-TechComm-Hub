@@ -75,3 +75,10 @@ project **PROJ-033**). New entries go at the top.
 - Symptom: live site unstyled, all `_next/*` assets 404. Root cause: venue republish omitted `touch dist/.nojekyll`, so GitHub Pages Jekyll excluded underscore dirs.
 - Fix: republished gh-pages with .nojekyll (802265b); verified .nojekyll 200, CSS 200, venue text live.
 - Prevention: build-static.sh now creates dist/.nojekyll itself.
+## 2026-10-18 — Add ArtCraft to Resources
+
+- Created `resources` doc (id 9) via Local API script: ArtCraft (getartcraft.com), CTA "Visit ArtCraft".
+- Mirrored entry into `scripts/seed.ts` resources array (verbatim, before BYTE BY BYTE).
+- Verified: `curl http://127.0.0.1:3115/resources` renders the ArtCraft card + getartcraft.com link.
+- Follow-up: static rebuild + GH Pages publish pending Andrew's DEV-274 gate.
+
