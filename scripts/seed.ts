@@ -163,7 +163,7 @@ await upsertEvent('fall-tech-table', {
   slug: 'fall-tech-table',
   eventDate: '2026-11-19T23:00:00.000Z',
   timeString: '6:00 PM – 8:00 PM EST',
-  location: 'Venue and virtual access details to be announced',
+  location: 'VHB - One Penn Plaza, New York',
   description:
     'Back by popular demand: we are going to have a continuation of our open-source AI lab from the annual conference. This time we will get to doing the actual lab from the session where you and an AI agent will map the industrial heart of Long Island City, live, using nothing but free and open-source tools. We wrap up with committee updates, what to watch in 2027, and a happy hour. Come for the lab, stay for the drinks; happy-hour-only folks are welcome too.',
   status: 'registration-open',
