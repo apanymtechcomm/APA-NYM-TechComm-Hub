@@ -11,6 +11,25 @@
 set -euo pipefail
 . "$(dirname "${BASH_SOURCE[0]}")/env.sh"
 
+# Public client config (Worker endpoints + Turnstile sitekey). next build
+# INLINES NEXT_PUBLIC_* — without these the RSVP page and the contact signup
+# form silently render the "being configured" placeholder on the live site
+# (regression on the 2026-10-18 republish). Source them on every build.
+PUBLIC_ENV="$REPO_ROOT/scripts/public-build.env"
+if [ -f "$PUBLIC_ENV" ]; then
+  set -a
+  # shellcheck disable=SC1090
+  . "$PUBLIC_ENV"
+  set +a
+else
+  echo "ERROR: $PUBLIC_ENV missing — refusing to build a site whose forms render 'being configured'." >&2
+  exit 1
+fi
+for v in NEXT_PUBLIC_EVENT_RSVP_API_URL NEXT_PUBLIC_SIGNUP_API_URL NEXT_PUBLIC_TURNSTILE_SITE_KEY; do
+  [ -n "${!v:-}" ] || { echo "ERROR: $v is empty in public-build.env" >&2; exit 1; }
+done
+echo "public config: RSVP=$NEXT_PUBLIC_EVENT_RSVP_API_URL signup=$NEXT_PUBLIC_SIGNUP_API_URL"
+
 STASH="$(mktemp -d "${TMPDIR:-/tmp}/apany-static-stash.XXXXXX")"
 declare -a ORIG=()
 

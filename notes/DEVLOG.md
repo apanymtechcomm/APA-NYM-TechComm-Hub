@@ -82,3 +82,12 @@ project **PROJ-033**). New entries go at the top.
 - Verified: `curl http://127.0.0.1:3115/resources` renders the ArtCraft card + getartcraft.com link.
 - Follow-up: static rebuild + GH Pages publish pending Andrew's DEV-274 gate.
 
+
+## 2026-10-19 — RSVP + signup forms restored (build-env regression)
+
+- **Symptom:** Live `/events/november-19-2026/rsvp/` showed "Online RSVP is being configured." The `/contact/` newsletter form was dead the same way.
+- **Root cause:** `next build` inlines `NEXT_PUBLIC_*` at build time. The 2026-10-18 republish rounds (venue + `.nojekyll` recovery) ran `build-static.sh` without `NEXT_PUBLIC_EVENT_RSVP_API_URL` / `NEXT_PUBLIC_SIGNUP_API_URL` / `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, so both forms exported the placeholder branch. Worker, D1, and Turnstile were never broken — `POST /v1/event-rsvps` with empty body still returns 400 and `event_rsvps` exists remotely.
+- **Fix:** New committed `scripts/public-build.env` (public values only: Worker endpoints + Turnstile sitekey) is sourced by `scripts/build-static.sh`, which now hard-fails if any of the three is missing. Republish rounds can no longer silently strip the forms.
+- **Verified (local export):** `dist/.../rsvp/index.html` and `dist/contact/index.html` contain 0 "being configured" hits, the correct Worker URL each, the sitekey, and `dist/.nojekyll`. Browser render of the export at `:3055`: RSVP form present with 4 attendance modes + Turnstile widget injected; contact form present + Turnstile injected; zero suspect `_next/` resources.
+- **Data impact:** `event_rsvps` holds exactly 1 row (Andrew's 2026-10-17 own test RSVP). No member responses were lost — but the form was unusable from 2026-10-18 onward, ahead of the Nov 18 building-entry deadline.
+- **Follow-up:** gh-pages publish pending the DEV-274 gate. This rebuild also carries the ArtCraft resource card (commit cfcc65f), which was unpublished.
