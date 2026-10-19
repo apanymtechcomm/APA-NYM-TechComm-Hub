@@ -91,3 +91,7 @@ project **PROJ-033**). New entries go at the top.
 - **Verified (local export):** `dist/.../rsvp/index.html` and `dist/contact/index.html` contain 0 "being configured" hits, the correct Worker URL each, the sitekey, and `dist/.nojekyll`. Browser render of the export at `:3055`: RSVP form present with 4 attendance modes + Turnstile widget injected; contact form present + Turnstile injected; zero suspect `_next/` resources.
 - **Data impact:** `event_rsvps` holds exactly 1 row (Andrew's 2026-10-17 own test RSVP). No member responses were lost — but the form was unusable from 2026-10-18 onward, ahead of the Nov 18 building-entry deadline.
 - **Follow-up:** gh-pages publish pending the DEV-274 gate. This rebuild also carries the ArtCraft resource card (commit cfcc65f), which was unpublished.
+- **Published (DEV-274 approved):** main `700f8fd..49c2c2c` (fast-forward, no force). gh-pages republished from `dist/` via orphan push — `802265b → 627e1e2`. Pages build `built` in ~40s; source gh-pages `/`.
+- **Live verified:** `rsvp/` and `contact/` both 200 with 0 "being configured" hits, correct Worker endpoint each, sitekey present, `.nojekyll` 200, hashed CSS 200. Browser render: RSVP form with all 4 attendance modes + Turnstile widget injected, site chrome styled, zero failed `_next/` resources.
+- **Also shipped in this round:** the ArtCraft resource card (was unpublished since `cfcc65f`).
+- **Open observation:** exported HTML carries no `<title>` element on any page (pre-existing, unrelated to this round) — worth a separate look for SEO/accessibility.
